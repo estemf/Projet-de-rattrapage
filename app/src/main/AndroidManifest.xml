@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- ================================ -->
+    <!-- PERMISSIONS RÉSEAU ET HARDWARE -->
+    <!-- ================================ -->
+    
+    <!-- Permission Internet pour l'API Deezer -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    
+    <!-- Permission pour surveiller l'état réseau -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    
+    <!-- Permission pour les paramètres audio -->
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    
+    <!-- Permission pour le feedback haptique -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <application
+        android:name=".DeezerMusicApplication"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@drawable/deezer_icon"
+        android:roundIcon="@drawable/deezer_icon"
+        android:label="@string/app_name"
+        android:theme="@style/Theme.Projet_Rattrapage"
+        android:supportsRtl="true"
+        android:targetSdkVersion="35"
+        tools:targetApi="35">
+        
+        <!-- ================================ -->
+        <!-- ACTIVITÉ PRINCIPALE UNIQUE -->
+        <!-- ================================ -->
+        
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Projet_Rattrapage">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

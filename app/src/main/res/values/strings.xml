@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <!-- ================================ -->
+    <!-- APPLICATION GÉNÉRALE -->
+    <!-- ================================ -->
+    
+    <string name="app_name">Deezer Music</string>
+    <string name="app_description">Application de recherche d\'artistes musicaux via l\'API Deezer</string>
+    
+    <!-- ================================ -->
+    <!-- NAVIGATION ET ÉCRANS -->
+    <!-- ================================ -->
+    
+    <!-- Écran de recherche -->
+    <string name="search_screen_title">Recherche d\'artistes</string>
+    <string name="search_hint_placeholder">Rechercher un artiste...</string>
+    <string name="search_min_chars_error">Saisissez au moins 2 caractères</string>
+    <string name="search_no_connection_error">Connexion Internet requise</string>
+    <string name="search_loading_message">Recherche en cours...</string>
+    <string name="search_empty_state_title">Recherchez votre artiste préféré</string>
+    <string name="search_empty_state_subtitle">Saisissez au moins 2 caractères pour commencer</string>
+    
+    <!-- Historique de recherche -->
+    <string name="search_history_title">Recherches récentes</string>
+    <string name="search_history_clear">Effacer</string>
+    <string name="search_history_cleared_toast">Historique effacé</string>
+    
+    <!-- Résultats de recherche -->
+    <string name="search_results_count_single">%1$d artiste trouvé</string>
+    <string name="search_results_count_plural">%1$d artistes trouvés</string>
+    <string name="search_results_no_results">Aucun artiste trouvé pour \"%1$s\"</string>
+    <string name="search_results_error">Impossible de rechercher \"%1$s\". Vérifiez votre connexion.</string>
+    
+    <!-- Navigation -->
+    <string name="nav_back">Retour</string>
+    <string name="nav_search">Recherche</string>
+    <string name="nav_artist_details">Détails de l\'artiste</string>
+    <string name="nav_album_details">Détails de l\'album</string>
+    <string name="nav_connectivity">État de la connectivité</string>
+    <string name="nav_settings">Paramètres</string>
+    
+    <!-- ================================ -->
+    <!-- CONNECTIVITÉ ET RÉSEAU -->
+    <!-- ================================ -->
+    
+    <string name="connectivity_excellent">Excellente</string>
+    <string name="connectivity_good">Bonne</string>
+    <string name="connectivity_poor">Faible</string>
+    <string name="connectivity_none">Aucune</string>
+    
+    <string name="connectivity_wifi">WiFi</string>
+    <string name="connectivity_mobile">Mobile</string>
+    <string name="connectivity_ethernet">Ethernet</string>
+    <string name="connectivity_vpn">VPN</string>
+    <string name="connectivity_other">Autre</string>
+    
+    <string name="connectivity_status_title">État de la connectivité</string>
+    <string name="connectivity_disconnected_message">Aucune connexion Internet</string>
+    <string name="connectivity_limited_message">Connexion limitée</string>
+    
+    <!-- ================================ -->
+    <!-- ACTIONS ET BOUTONS -->
+    <!-- ================================ -->
+    
+    <!-- Actions générales -->
+    <string name="action_search">Rechercher</string>
+    <string name="action_share">Partager</string>
+    <string name="action_favorite">Favoris</string>
+    <string name="action_clear">Effacer</string>
+    <string name="action_retry">Réessayer</string>
+    <string name="action_cancel">Annuler</string>
+    <string name="action_close">Fermer</string>
+    <string name="action_settings">Paramètres</string>
+    
+    <!-- Actions de lecture -->
+    <string name="action_play">Lire</string>
+    <string name="action_pause">Pause</string>
+    <string name="action_stop">Arrêter</string>
+    <string name="action_next">Suivant</string>
+    <string name="action_previous">Précédent</string>
+    
+    <!-- ================================ -->
+    <!-- CONTENU MUSICAL -->
+    <!-- ================================ -->
+    
+    <!-- Artistes -->
+    <string name="artist_fans_count_millions">%1$dM fans</string>
+    <string name="artist_fans_count_thousands">%1$dK fans</string>
+    <string name="artist_fans_count_units">%1$d fans</string>
+    <string name="artist_albums_count">%1$d album(s)</string>
+    <string name="artist_unknown">Artiste inconnu</string>
+    
+    <!-- Albums -->
+    <string name="album_tracks_count">%1$d piste(s)</string>
+    <string name="album_duration_hours">%1$dh %2$dm</string>
+    <string name="album_duration_minutes">%1$dm</string>
+    <string name="album_duration_unknown">Durée inconnue</string>
+    <string name="album_release_date_unknown">Date inconnue</string>
+    <string name="album_unknown">Album inconnu</string>
+    
+    <!-- Pistes -->
+    <string name="track_duration_format">%1$d:%2$02d</string>
+    <string name="track_duration_unknown">--:--</string>
+    <string name="track_explicit_marker">[E]</string>
+    <string name="track_unknown">Piste inconnue</string>
+    
+    <!-- ================================ -->
+    <!-- MESSAGES D'ERREUR -->
+    <!-- ================================ -->
+    
+    <string name="error_network_connection">Erreur de connexion réseau</string>
+    <string name="error_search_failed">Erreur de recherche</string>
+    <string name="error_artist_not_found">Artiste introuvable</string>
+    <string name="error_album_not_found">Album introuvable</string>
+    <string name="error_invalid_url">URL invalide</string>
+    <string name="error_invalid_number">Nombre invalide</string>
+    <string name="error_field_required">Champ obligatoire</string>
+    <string name="error_min_value">Minimum: %1$d</string>
+    <string name="error_max_value">Maximum: %1$d</string>
+    
+    <!-- ================================ -->
+    <!-- PARTAGE ET COMMUNICATION -->
+    <!-- ================================ -->
+    
+    <string name="share_artist_text">Découvre %1$s sur Deezer !\n%2$s</string>
+    <string name="share_album_text">Écoute l\'album \"%1$s\" de %2$s sur Deezer !\n%3$s</string>
+    <string name="share_track_text">Écoute \"%1$s\" de %2$s sur Deezer !\n%3$s</string>
+    <string name="share_chooser_title">Partager</string>
+    <string name="share_artist_chooser_title">Partager cet artiste</string>
+    
+    <!-- ================================ -->
+    <!-- ACCESSIBILITÉ -->
+    <!-- ================================ -->
+    
+    <string name="content_description_artist_image">Photo de l\'artiste %1$s</string>
+    <string name="content_description_album_cover">Couverture de l\'album %1$s</string>
+    <string name="content_description_play_button">Lancer la lecture</string>
+    <string name="content_description_pause_button">Mettre en pause</string>
+    <string name="content_description_share_button">Partager %1$s</string>
+    <string name="content_description_back_button">Revenir en arrière</string>
+    <string name="content_description_connectivity_icon">Indicateur de connectivité</string>
+    <string name="content_description_search_icon">Icône de recherche</string>
+    <string name="content_description_clear_search">Effacer la recherche</string>
+    
+    <!-- ================================ -->
+    <!-- FORMATAGE ET UNITÉS -->
+    <!-- ================================ -->
+    
+    <string name="unit_millions">M</string>
+    <string name="unit_thousands">K</string>
+    <string name="unit_hours_short">h</string>
+    <string name="unit_minutes_short">m</string>
+    <string name="unit_seconds_short">s</string>
+    
+    <!-- ================================ -->
+    <!-- PLACEHOLDERS ET EXEMPLES -->
+    <!-- ================================ -->
+    
+    <string name="placeholder_url_example">Exemple: https://www.deezer.com/artist/123</string>
+    <string name="placeholder_artist_name">Nom de l\'artiste</string>
+    <string name="placeholder_album_title">Titre de l\'album</string>
+    <string name="placeholder_track_title">Titre de la piste</string>
+    
+</resources>
