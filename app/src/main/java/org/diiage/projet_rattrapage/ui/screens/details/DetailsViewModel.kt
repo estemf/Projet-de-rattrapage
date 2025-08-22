@@ -12,6 +12,7 @@ import org.diiage.projet_rattrapage.domain.model.Track
 import org.diiage.projet_rattrapage.domain.usecase.GetArtistDetailsUseCase
 import org.diiage.projet_rattrapage.domain.usecase.ArtistDetails
 import org.diiage.projet_rattrapage.domain.repository.MusicRepository
+import org.diiage.projet_rattrapage.data.hardware.AudioPlayer
 import timber.log.Timber
 
 /**
@@ -38,12 +39,13 @@ import timber.log.Timber
  * @param getArtistDetailsUseCase Use case pour récupérer les détails d'artiste
  * @param musicRepository Repository pour l'accès direct aux données musicales
  * 
- * @author Équipe DIIAGE
+
  * @since 1.0
  */
 class DetailsViewModel(
     private val getArtistDetailsUseCase: GetArtistDetailsUseCase,
-    private val musicRepository: MusicRepository
+    private val musicRepository: MusicRepository,
+    private val audioPlayer: AudioPlayer
 ) : ViewModel() {
     
     // ================================
@@ -65,6 +67,14 @@ class DetailsViewModel(
      * en exposant uniquement les capacités de lecture
      */
     val uiState: StateFlow<DetailsUiState> = _uiState.asStateFlow()
+    
+    /**
+     * Lecteur audio pour les extraits de pistes
+     * 
+     * Exposé publiquement pour permettre à l'UI d'accéder
+     * aux fonctionnalités de lecture audio
+     */
+    val audioPlayerInstance: AudioPlayer = audioPlayer
     
     // ================================
     // ACTIONS PUBLIQUES

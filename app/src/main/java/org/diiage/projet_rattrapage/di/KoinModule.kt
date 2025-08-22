@@ -2,7 +2,7 @@ package org.diiage.projet_rattrapage.di
 
 import org.diiage.projet_rattrapage.data.api.DeezerApiService
 import org.diiage.projet_rattrapage.data.hardware.AudioManager
-import org.diiage.projet_rattrapage.data.hardware.ConnectivityManager
+import org.diiage.projet_rattrapage.data.hardware.AudioPlayer
 import org.diiage.projet_rattrapage.data.repository.MusicRepositoryImpl
 import org.diiage.projet_rattrapage.domain.repository.MusicRepository
 import org.diiage.projet_rattrapage.domain.usecase.GetArtistDetailsUseCase
@@ -26,7 +26,7 @@ import okhttp3.MediaType.Companion.toMediaType
  * Remplace les modules Hilt par une configuration Koin plus simple
  * et sans conflit JavaPoet.
  * 
- * @author Équipe DIIAGE
+
  * @since 1.0
  */
 
@@ -60,8 +60,7 @@ val repositoryModule = module {
     single<MusicRepository> {
         MusicRepositoryImpl(
             apiService = get(),
-            audioManager = get(),
-            connectivityManager = get()
+            audioManager = get()
         )
     }
 }
@@ -93,8 +92,12 @@ val hardwareModule = module {
         AudioManager(androidContext())
     }
     
+    // Lecteur audio pour les extraits Deezer
     single {
-        ConnectivityManager(androidContext())
+        AudioPlayer(
+            context = androidContext(),
+            audioManager = get()
+        )
     }
 }
 
@@ -115,7 +118,6 @@ val viewModelModule = module {
             searchAlbumsUseCase = get(),
             searchTracksUseCase = get(),
             navigationManager = get(),
-            connectivityManager = get(),
             audioManager = get()
         )
     }
@@ -123,7 +125,8 @@ val viewModelModule = module {
     viewModel {
         DetailsViewModel(
             getArtistDetailsUseCase = get(),
-            musicRepository = get()
+            musicRepository = get(),
+            audioPlayer = get()
         )
     }
 } 

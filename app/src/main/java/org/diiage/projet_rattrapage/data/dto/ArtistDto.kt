@@ -28,7 +28,7 @@ import org.diiage.projet_rattrapage.domain.model.Artist
  * @property tracklist URL de la liste des pistes
  * @property type Type d'objet (toujours "artist")
  * 
- * @author Équipe DIIAGE
+
  * @since 1.0
  */
 @Serializable

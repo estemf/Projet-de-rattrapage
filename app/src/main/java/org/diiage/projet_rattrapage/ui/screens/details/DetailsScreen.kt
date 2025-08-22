@@ -33,6 +33,8 @@ import coil.request.ImageRequest
 import org.diiage.projet_rattrapage.domain.model.*
 import org.diiage.projet_rattrapage.ui.components.DeezerPrimaryButton
 import org.diiage.projet_rattrapage.ui.navigation.NavigationManager
+import org.diiage.projet_rattrapage.ui.components.AudioPreviewPlayer
+import org.diiage.projet_rattrapage.data.hardware.AudioPlayer
 import org.diiage.projet_rattrapage.ui.theme.deezerPurple
 import org.diiage.projet_rattrapage.ui.theme.Projet_RattrapageTheme
 
@@ -55,7 +57,7 @@ import org.diiage.projet_rattrapage.ui.theme.Projet_RattrapageTheme
  * @param viewModel ViewModel gérant la logique business
  * @param navigationManager Manager centralisé de navigation
  * 
- * @author Équipe DIIAGE
+
  * @since 1.0
  */
 @Composable
@@ -102,7 +104,8 @@ fun DetailsScreen(
                             DetailsType.ALBUM -> navigationManager.navigateToAlbumDetails(id)
                             DetailsType.TRACK -> navigationManager.navigateToTrackDetails(id)
                         }
-                    }
+                    },
+                    audioPlayer = viewModel.audioPlayerInstance
                 )
             }
         }
@@ -117,7 +120,8 @@ private fun DetailsContent(
     uiState: DetailsUiState,
     detailsType: DetailsType,
     onBack: () -> Unit,
-    onRelatedItemClick: (DetailsType, Long) -> Unit
+    onRelatedItemClick: (DetailsType, Long) -> Unit,
+    audioPlayer: AudioPlayer
 ) {
             LazyColumn(
         modifier = Modifier.fillMaxSize(),
@@ -162,7 +166,8 @@ private fun DetailsContent(
                         },
                         onAlbumClick = { albumId: Long ->
                             onRelatedItemClick(DetailsType.ALBUM, albumId)
-                        }
+                        },
+                        audioPlayer = audioPlayer
                     )
                 }
             }
@@ -386,7 +391,8 @@ private fun AlbumDetailsCard(
 private fun TrackDetailsCard(
     track: Track,
     onArtistClick: (Long) -> Unit,
-    onAlbumClick: (Long) -> Unit
+    onAlbumClick: (Long) -> Unit,
+    audioPlayer: AudioPlayer
 ) {
     Card(
         modifier = Modifier.fillMaxWidth(),
@@ -477,6 +483,17 @@ private fun TrackDetailsCard(
                         value = track.trackPosition.toString()
                     )
                 }
+            }
+            
+            // Lecteur audio pour l'extrait (si disponible)
+            if (track.hasPreview()) {
+                Spacer(modifier = Modifier.height(8.dp))
+                AudioPreviewPlayer(
+                    audioPlayer = audioPlayer,
+                    previewUrl = track.preview,
+                    trackTitle = track.title,
+                    modifier = Modifier.fillMaxWidth()
+                )
             }
             
             // Date de sortie de l'album - compacte

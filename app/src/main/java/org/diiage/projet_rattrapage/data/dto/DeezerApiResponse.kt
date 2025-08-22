@@ -15,7 +15,7 @@ import kotlinx.serialization.Serializable
  * @property next URL pour la page suivante (pagination)
  * @property prev URL pour la page précédente (pagination)
  * 
- * @author Équipe DIIAGE
+
  * @since 1.0
  */
 @Serializable

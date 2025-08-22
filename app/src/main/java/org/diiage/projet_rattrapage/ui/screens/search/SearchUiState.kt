@@ -23,12 +23,12 @@ import org.diiage.projet_rattrapage.domain.model.Track
  * @property trackResults Résultats de recherche de pistes
  * @property error Message d'erreur ou null
  * @property searchHistory Historique des recherches récentes
- * @property isConnected État de connectivité réseau
- * @property connectionQuality Qualité de la connexion
+
+
  * @property hasSearched Indique si une recherche a été effectuée
  * @property isSearchFieldFocused État du focus du champ de recherche
  * 
- * @author Équipe DIIAGE
+
  * @since 1.0
  */
 data class SearchUiState(
@@ -56,11 +56,7 @@ data class SearchUiState(
     // ================================
     val searchHistory: List<String> = emptyList(),
     
-    // ================================
-    // CONNECTIVITÉ
-    // ================================
-    val isConnected: Boolean = true,
-    val connectionQuality: String = "Excellente",
+
     
     // ================================
     // ÉTAT DE L'UI
@@ -77,7 +73,7 @@ data class SearchUiState(
      * Indique si l'écran peut effectuer une recherche
      */
     val canSearch: Boolean
-        get() = searchQuery.trim().length >= 2 && isConnected && !isLoading
+        get() = searchQuery.trim().length >= 2 && !isLoading
     
     /**
      * Indique s'il y a des résultats à afficher selon le type sélectionné
@@ -109,7 +105,6 @@ data class SearchUiState(
             error != null -> error
             hasSearched && !hasResults && !isLoading -> 
                 "Aucun ${selectedSearchType.displayName.lowercase()} trouvé"
-            !isConnected -> "Connexion Internet requise"
             else -> null
         }
     
@@ -169,7 +164,6 @@ sealed class SearchEvent {
     data class NavigateToTrackDetails(val trackId: Long) : SearchEvent()
     data class ShowToast(val message: String) : SearchEvent()
     data class ShareContent(val text: String) : SearchEvent()
-    object NavigateToConnectivity : SearchEvent()
     object HideKeyboard : SearchEvent()
     object HapticFeedback : SearchEvent()
 }
@@ -193,7 +187,6 @@ sealed class SearchAction {
     data class UpdateSearchFieldFocus(val isFocused: Boolean) : SearchAction()
     object ClearSearchHistory : SearchAction()
     object ClearSearchQuery : SearchAction()
-    object ShowConnectivityStatus : SearchAction()
     object RetryLastSearch : SearchAction()
     object ToggleTheme : SearchAction()
 } 

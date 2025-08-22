@@ -22,7 +22,7 @@ package org.diiage.projet_rattrapage.domain.model
  * @property duration Durée totale de l'album en secondes
  * @property link Lien vers la page Deezer de l'album
  * 
- * @author Équipe DIIAGE
+
  * @since 1.0
  */
 data class Album(

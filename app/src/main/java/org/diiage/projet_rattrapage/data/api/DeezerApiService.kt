@@ -25,7 +25,7 @@ import retrofit2.http.Query
  * - L'accès aux headers de réponse
  * - La gestion appropriée des erreurs réseau
  * 
- * @author Équipe DIIAGE
+
  * @since 1.0
  */
 interface DeezerApiService {

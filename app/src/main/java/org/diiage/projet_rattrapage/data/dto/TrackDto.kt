@@ -27,7 +27,7 @@ import org.diiage.projet_rattrapage.domain.model.Track
  * @property link Lien vers la page Deezer de la piste
  * @property type Type d'objet (toujours "track")
  * 
- * @author Équipe DIIAGE
+
  * @since 1.0
  */
 @Serializable

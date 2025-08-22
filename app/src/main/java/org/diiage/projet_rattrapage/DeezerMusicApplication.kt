@@ -15,7 +15,7 @@ import timber.log.Timber
  * - Timber pour le logging centralisé
  * - Configuration globale de l'application
  * 
- * @author Équipe DIIAGE
+
  * @since 1.0
  */
 class DeezerMusicApplication : Application() {

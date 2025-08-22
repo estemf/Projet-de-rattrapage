@@ -27,6 +27,12 @@ import org.diiage.projet_rattrapage.ui.theme.DeezerTypography
  * - Cohérence visuelle garantie
  * - Support des couleurs dynamiques Android 12+
  * 
+ * Design patterns appliqués :
+ * - Theme Pattern : gestion centralisée des thèmes
+ * - Dynamic Color Pattern : support des couleurs système Android 12+
+ * - Brand Integration Pattern : intégration cohérente de l'identité Deezer
+ * - Edge-to-Edge Pattern : design moderne sans bordures
+ * 
  * Fonctionnalités :
  * - Détection automatique du thème système
  * - Support des couleurs dynamiques Material You
@@ -36,8 +42,6 @@ import org.diiage.projet_rattrapage.ui.theme.DeezerTypography
  * @param darkTheme Force le mode sombre (null = automatique)
  * @param dynamicColor Active les couleurs dynamiques sur Android 12+
  * @param content Contenu de l'application
- * 
- * @author Équipe DIIAGE
  * @since 1.0
  */
 @Composable

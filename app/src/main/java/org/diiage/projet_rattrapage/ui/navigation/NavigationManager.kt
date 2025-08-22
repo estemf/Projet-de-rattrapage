@@ -28,7 +28,7 @@ import timber.log.Timber
  * - Open/Closed : extensible pour nouvelles destinations
  * - Dependency Inversion : interface abstraite de la navigation
  * 
- * @author Équipe DIIAGE
+
  * @since 1.0
  */
 class NavigationManager() {
@@ -237,16 +237,7 @@ class NavigationManager() {
         }
     }
     
-    /**
-     * Navigation vers l'écran de connectivité
-     * 
-     * Utile pour le debugging et les diagnostics réseau
-     */
-    fun navigateToConnectivityStatus() {
-        navigateAndLog(DeezerDestinations.ConnectivityStatusScreen.route) {
-            navController?.navigate(DeezerDestinations.ConnectivityStatusScreen.route)
-        }
-    }
+
     
     /**
      * Navigation vers les paramètres

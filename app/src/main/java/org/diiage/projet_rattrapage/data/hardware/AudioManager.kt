@@ -28,7 +28,7 @@ import timber.log.Timber
  * 
  * @property context Contexte Android pour accéder aux services système
  * 
- * @author Équipe DIIAGE
+
  * @since 1.0
  */
 class AudioManager(

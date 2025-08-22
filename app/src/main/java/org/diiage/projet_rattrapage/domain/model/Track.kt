@@ -1,5 +1,7 @@
 package org.diiage.projet_rattrapage.domain.model
 
+import java.util.Locale
+
 /**
  * Modèle de données représentant une piste musicale dans la couche Domain
  * 
@@ -21,7 +23,7 @@ package org.diiage.projet_rattrapage.domain.model
  * @property link Lien vers la page Deezer de la piste
  * @property explicit Indique si la piste contient du contenu explicite
  * 
- * @author Équipe DIIAGE
+
  * @since 1.0
  */
 data class Track(
@@ -51,7 +53,7 @@ data class Track(
         val minutes = duration / 60
         val seconds = duration % 60
         
-        return String.format("%d:%02d", minutes, seconds)
+        return String.format(Locale.ROOT, "%d:%02d", minutes, seconds)
     }
     
     /**

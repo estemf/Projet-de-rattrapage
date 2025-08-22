@@ -19,7 +19,7 @@ import timber.log.Timber
  * - Single Responsibility : chaque extension a un rôle spécifique
  * - Defensive Programming : gestion des cas d'erreur
  * 
- * @author Équipe DIIAGE
+
  * @since 1.0
  */
 

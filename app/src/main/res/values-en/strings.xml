@@ -14,10 +14,10 @@
     
     <!-- Search screen -->
     <string name="search_screen_title">Artist Search</string>
-    <string name="search_hint_placeholder">Search for an artist...</string>
+    <string name="search_hint_placeholder">Search for an artist…</string>
     <string name="search_min_chars_error">Enter at least 2 characters</string>
     <string name="search_no_connection_error">Internet connection required</string>
-    <string name="search_loading_message">Searching...</string>
+    <string name="search_loading_message">Searching…</string>
     <string name="search_empty_state_title">Search for your favorite artist</string>
     <string name="search_empty_state_subtitle">Enter at least 2 characters to start</string>
     
@@ -37,27 +37,10 @@
     <string name="nav_search">Search</string>
     <string name="nav_artist_details">Artist Details</string>
     <string name="nav_album_details">Album Details</string>
-    <string name="nav_connectivity">Connectivity Status</string>
+
     <string name="nav_settings">Settings</string>
     
-    <!-- ================================ -->
-    <!-- CONNECTIVITY AND NETWORK -->
-    <!-- ================================ -->
-    
-    <string name="connectivity_excellent">Excellent</string>
-    <string name="connectivity_good">Good</string>
-    <string name="connectivity_poor">Poor</string>
-    <string name="connectivity_none">None</string>
-    
-    <string name="connectivity_wifi">WiFi</string>
-    <string name="connectivity_mobile">Mobile</string>
-    <string name="connectivity_ethernet">Ethernet</string>
-    <string name="connectivity_vpn">VPN</string>
-    <string name="connectivity_other">Other</string>
-    
-    <string name="connectivity_status_title">Connectivity Status</string>
-    <string name="connectivity_disconnected_message">No Internet connection</string>
-    <string name="connectivity_limited_message">Limited connection</string>
+
     
     <!-- ================================ -->
     <!-- ACTIONS AND BUTTONS -->
@@ -109,7 +92,7 @@
     <!-- ERROR MESSAGES -->
     <!-- ================================ -->
     
-    <string name="error_network_connection">Network connection error</string>
+
     <string name="error_search_failed">Search error</string>
     <string name="error_artist_not_found">Artist not found</string>
     <string name="error_album_not_found">Album not found</string>
@@ -139,7 +122,7 @@
     <string name="content_description_pause_button">Pause playback</string>
     <string name="content_description_share_button">Share %1$s</string>
     <string name="content_description_back_button">Go back</string>
-    <string name="content_description_connectivity_icon">Connectivity indicator</string>
+
     <string name="content_description_search_icon">Search icon</string>
     <string name="content_description_clear_search">Clear search</string>
     

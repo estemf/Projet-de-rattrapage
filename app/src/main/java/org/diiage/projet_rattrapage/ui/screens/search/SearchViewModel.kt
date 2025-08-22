@@ -11,7 +11,6 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.diiage.projet_rattrapage.data.hardware.AudioManager
-import org.diiage.projet_rattrapage.data.hardware.ConnectivityManager
 import org.diiage.projet_rattrapage.domain.model.Artist
 import org.diiage.projet_rattrapage.domain.model.Album
 import org.diiage.projet_rattrapage.domain.model.Track
@@ -37,7 +36,7 @@ import timber.log.Timber
  * Responsabilités :
  * - Gestion de l'état de recherche
  * - Coordination des Use Cases
- * - Surveillance de la connectivité
+
  * - Gestion des événements UI
  * - Logging et feedback haptique
  * 
@@ -48,10 +47,10 @@ import timber.log.Timber
  * 
  * @property searchArtistsUseCase Use case pour la recherche d'artistes
  * @property navigationManager Manager de navigation centralisé
- * @property connectivityManager Manager de connectivité hardware
+ * @property audioManager Manager audio hardware
  * @property audioManager Manager audio pour feedback haptique
  * 
- * @author Équipe DIIAGE
+
  * @since 1.0
  */
 class SearchViewModel(
@@ -59,7 +58,6 @@ class SearchViewModel(
     private val searchAlbumsUseCase: SearchAlbumsUseCase,
     private val searchTracksUseCase: SearchTracksUseCase,
     private val navigationManager: NavigationManager,
-    private val connectivityManager: ConnectivityManager,
     private val audioManager: AudioManager
 ) : ViewModel() {
     
@@ -102,45 +100,15 @@ class SearchViewModel(
         Timber.i("🔍 SearchViewModel initialisé")
         logViewModelState("INIT")
         
-        // Surveillance de la connectivité en temps réel
-        startConnectivityMonitoring()
+
         
         // Log initial de l'état
         logViewModelState("READY", mapOf(
-            "can_search" to _uiState.value.canSearch,
-            "connectivity" to _uiState.value.isConnected
+            "can_search" to _uiState.value.canSearch
         ))
     }
     
-    /**
-     * Démarre la surveillance de la connectivité en temps réel
-     * 
-     * Utilise le ConnectivityManager hardware pour surveiller
-     * les changements d'état réseau
-     */
-    private fun startConnectivityMonitoring() {
-        viewModelScope.launch {
-            connectivityManager.observeConnectivityState().collectLatest { connectivityState ->
-                
-                // Met à jour l'état UI avec les informations de connectivité
-                _uiState.value = _uiState.value.copy(
-                    isConnected = connectivityState.isConnected,
-                    connectionQuality = connectivityState.quality.displayName
-                )
-                
-                logViewModelState("CONNECTIVITY_CHANGED", mapOf(
-                    "connected" to connectivityState.isConnected,
-                    "quality" to connectivityState.quality.displayName,
-                    "type" to connectivityState.connectionType.displayName
-                ))
-                
-                // Feedback haptique lors des changements de connectivité
-                if (!connectivityState.isConnected) {
-                    audioManager.performHeavyHapticFeedback()
-                }
-            }
-        }
-    }
+
     
     // ================================
     // ACTIONS CLAIRES ET INFORMATIVES
@@ -165,7 +133,7 @@ class SearchViewModel(
             is SearchAction.ClearSearchHistory -> clearSearchHistoryAction()
             is SearchAction.ClearSearchQuery -> clearSearchQueryAction()
             is SearchAction.UpdateSearchFieldFocus -> updateSearchFieldFocusAction(action.isFocused)
-            is SearchAction.ShowConnectivityStatus -> showConnectivityStatusAction()
+
             is SearchAction.RetryLastSearch -> retryLastSearchAction()
             is SearchAction.ShareArtist -> shareArtistAction(action.artist)
             is SearchAction.ShareAlbum -> shareAlbumAction(action.album)
@@ -203,8 +171,7 @@ class SearchViewModel(
         
         logEvent("PERFORM_SEARCH", mapOf(
             "query" to cleanQuery,
-            "query_length" to cleanQuery.length,
-            "is_connected" to _uiState.value.isConnected
+            "query_length" to cleanQuery.length
         ))
         
         // Validation préalable
@@ -214,12 +181,7 @@ class SearchViewModel(
             return
         }
         
-        if (!_uiState.value.isConnected) {
-            Timber.w("⚠️ Recherche impossible sans connexion Internet")
-            _events.tryEmit(SearchEvent.ShowToast("Connexion Internet requise"))
-            audioManager.performHeavyHapticFeedback()
-            return
-        }
+
         
         // Mise à jour de l'état : début de recherche
         _uiState.value = _uiState.value.copy(
@@ -458,16 +420,7 @@ class SearchViewModel(
         _uiState.value = _uiState.value.copy(isSearchFieldFocused = isFocused)
     }
     
-    /**
-     * Action : Affichage de l'état de connectivité
-     */
-    private fun showConnectivityStatusAction() {
-        logEvent("SHOW_CONNECTIVITY_STATUS")
-        // Utilisation de viewModelScope.launch pour émission garantie
-        viewModelScope.launch {
-            _events.emit(SearchEvent.NavigateToConnectivity)
-        }
-    }
+
     
     /**
      * Action : Nouvelle tentative de la dernière recherche

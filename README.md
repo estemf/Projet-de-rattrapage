@@ -129,9 +129,7 @@ Une fois lancée, l'application devrait afficher :
 - ✅ Recherche d'artistes, albums et pistes
 - ✅ Affichage des résultats ainsi qu'une page détails
 - ✅ Light et Dark mode
-- ✅ Gestion des erreurs réseau
 - ✅ Feedback haptique (vibration)
-- ✅ État connection réseau
 
 ## 📚 Ressources utiles
 

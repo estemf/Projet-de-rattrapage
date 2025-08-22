@@ -24,7 +24,7 @@ import org.diiage.projet_rattrapage.domain.model.Track
  * @property album Données de l'album (si type ALBUM)  
  * @property track Données de la piste (si type TRACK)
  * 
- * @author Équipe DIIAGE
+
  * @since 1.0
  */
 data class DetailsUiState(

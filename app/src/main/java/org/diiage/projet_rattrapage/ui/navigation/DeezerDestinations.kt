@@ -11,7 +11,7 @@ package org.diiage.projet_rattrapage.ui.navigation
  * 
  * Principe Single Responsibility : chaque destination a un rôle précis
  * 
- * @author Équipe DIIAGE
+
  * @since 1.0
  */
 sealed class DeezerDestinations(val route: String) {
@@ -142,17 +142,7 @@ sealed class DeezerDestinations(val route: String) {
     // ÉCRANS UTILITAIRES
     // ================================
     
-    /**
-     * Écran d'état de connectivité
-     * 
-     * Fonctionnalités :
-     * - Affichage de l'état réseau en temps réel
-     * - Informations de debugging
-     * - Test de connectivité
-     */
-    object ConnectivityStatusScreen : DeezerDestinations("connectivity_status") {
-        const val TITLE = "État de la connectivité"
-    }
+
     
     /**
      * Écran des paramètres de l'application
@@ -183,7 +173,6 @@ sealed class DeezerDestinations(val route: String) {
             ArtistDetailsScreen,
             AlbumDetailsScreen,
             TrackDetailsScreen,
-            ConnectivityStatusScreen,
             SettingsScreen
         )
         

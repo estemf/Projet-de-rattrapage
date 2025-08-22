@@ -19,7 +19,7 @@ import timber.log.Timber
  * - Logging Pattern : traçabilité complète des opérations
  * - Functional Programming : extensions réutilisables
  * 
- * @author Équipe DIIAGE
+
  * @since 1.0
  */
 
@@ -254,7 +254,7 @@ fun ViewModel.logEvent(
  * init {
  *     onDestroy {
  *         audioManager.release()
- *         connectivityManager.stopMonitoring()
+ *         // Surveillance de connectivité supprimée
  *     }
  * }
  * ```

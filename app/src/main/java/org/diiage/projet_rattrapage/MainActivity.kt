@@ -31,7 +31,7 @@ import org.koin.android.ext.android.get
  * - Dependency Injection
  * - Edge-to-edge design moderne
  * 
- * @author Équipe DIIAGE
+
  * @since 1.0
  */
 class MainActivity : ComponentActivity() {

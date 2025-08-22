@@ -34,7 +34,7 @@ import timber.log.Timber
  * @param navigationManager Manager de navigation centralisé
  * @param modifier Modifier pour la customisation
  * 
- * @author Équipe DIIAGE
+
  * @since 1.0
  */
 @Composable
@@ -203,17 +203,7 @@ fun DeezerNavHost(
             )
         }
         
-        // ================================
-        // ÉCRAN DE CONNECTIVITÉ (DEBUG)
-        // ================================
-        
-        composable(
-            route = DeezerDestinations.ConnectivityStatusScreen.route
-        ) {
-            Timber.d("🎯 Navigation vers l'écran de connectivité")
-            
-            ConnectivityStatusScreen(navigationManager = navigationManager)
-        }
+
         
         // ================================
         // ÉCRAN DES PARAMÈTRES

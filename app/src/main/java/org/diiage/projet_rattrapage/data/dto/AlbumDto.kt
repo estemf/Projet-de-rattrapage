@@ -29,7 +29,7 @@ import org.diiage.projet_rattrapage.domain.model.Album
  * @property explicit Contenu explicite
  * @property type Type d'objet (toujours "album")
  * 
- * @author Équipe DIIAGE
+
  * @since 1.0
  */
 @Serializable

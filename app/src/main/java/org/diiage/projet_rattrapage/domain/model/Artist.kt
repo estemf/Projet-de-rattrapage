@@ -19,7 +19,7 @@ package org.diiage.projet_rattrapage.domain.model
  * @property numberOfFans Nombre de fans de l'artiste
  * @property link Lien vers la page Deezer de l'artiste
  * 
- * @author Équipe DIIAGE
+
  * @since 1.0
  */
 data class Artist(

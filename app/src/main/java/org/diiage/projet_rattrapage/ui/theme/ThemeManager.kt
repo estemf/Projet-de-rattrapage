@@ -13,12 +13,17 @@ import kotlinx.coroutines.flow.asStateFlow
  * Cette classe applique le pattern Singleton pour gérer l'état du thème
  * de manière centralisée dans toute l'application.
  * 
+ * Design patterns appliqués :
+ * - Singleton Pattern : une seule instance pour gérer l'état global
+ * - Observer Pattern : StateFlow pour la réactivité de l'UI
+ * - State Management Pattern : gestion centralisée de l'état du thème
+ * - Reactive Programming Pattern : programmation réactive avec StateFlow
+ * 
  * Responsabilités :
  * - Gestion de l'état dark/light mode
  * - Persistance des préférences utilisateur
  * - Réactivité via StateFlow
  * 
- * @author Équipe DIIAGE
  * @since 1.0
  */
 object ThemeManager {

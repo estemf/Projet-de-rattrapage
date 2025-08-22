@@ -45,7 +45,7 @@ import org.diiage.projet_rattrapage.ui.theme.Projet_RattrapageTheme
  * - Icônes contextuelles
  * - Feedback visuel d'état
  * 
- * @author Équipe DIIAGE
+
  * @since 1.0
  */
 
@@ -174,7 +174,7 @@ fun DeezerSearchField(
         )
         
         // Message d'erreur ou d'aide
-        if (hasError || error != null) {
+        if (hasError) {
             Spacer(modifier = Modifier.height(4.dp))
             Text(
                 text = error ?: "Saisissez au moins 2 caractères",

@@ -26,7 +26,7 @@ import org.diiage.projet_rattrapage.domain.model.Track
 import org.diiage.projet_rattrapage.ui.components.DeezerPrimaryButton
 import org.diiage.projet_rattrapage.ui.components.DeezerSearchField
 import org.diiage.projet_rattrapage.ui.components.DeezerTextButton
-import org.diiage.projet_rattrapage.ui.theme.getConnectivityColor
+
 import org.diiage.projet_rattrapage.ui.navigation.NavigationManager
 import org.diiage.projet_rattrapage.ui.theme.Projet_RattrapageTheme
 import org.diiage.projet_rattrapage.utils.showToast
@@ -50,7 +50,7 @@ import org.diiage.projet_rattrapage.utils.shareText
  * @param navigationManager Manager de navigation centralisé
  * @param viewModel ViewModel de recherche injecté par Hilt
  * 
- * @author Équipe DIIAGE
+
  * @since 1.0
  */
 @Composable
@@ -83,9 +83,7 @@ fun SearchScreen(
                 is SearchEvent.NavigateToTrackDetails -> {
                     navigationManager.navigateToTrackDetails(event.trackId)
                 }
-                is SearchEvent.NavigateToConnectivity -> {
-                    navigationManager.navigateToConnectivityStatus()
-                }
+
                 is SearchEvent.ShowToast -> {
                     context.showToast(event.message)
                 }
@@ -114,14 +112,11 @@ fun SearchScreen(
     ) {
         
         // ================================
-        // HEADER AVEC CONNECTIVITÉ ET THÈME
+        // HEADER AVEC THÈME
         // ================================
         
         SearchHeaderSection(
             uiState = uiState,
-            onConnectivityClick = {
-                viewModel.handleAction(SearchAction.ShowConnectivityStatus)
-            },
             onThemeToggle = {
                 viewModel.handleAction(SearchAction.ToggleTheme)
             }
@@ -232,15 +227,14 @@ fun SearchScreen(
 // ================================
 
 /**
- * Section d'en-tête avec informations de connectivité
+ * Section d'en-tête avec informations de thème
  * 
  * Composable LEGO focalisé sur l'affichage des informations
- * de statut et de connectivité
+ * de thème et de navigation
  */
 @Composable
 private fun SearchHeaderSection(
     uiState: SearchUiState,
-    onConnectivityClick: () -> Unit,
     onThemeToggle: () -> Unit
 ) {
     val isDarkTheme by ThemeManager.isDarkTheme.collectAsStateWithLifecycle()
@@ -280,29 +274,7 @@ private fun SearchHeaderSection(
                 )
             }
             
-            // Indicateur de connectivité cliquable avec logos WiFi dynamiques
-            IconButton(onClick = onConnectivityClick) {
-                Icon(
-                    painter = painterResource(
-                        id = when {
-                            !uiState.isConnected -> R.drawable.wifi_disconnect
-                            uiState.connectionQuality == "Faible" -> R.drawable.wifi_low
-                            else -> R.drawable.wifi // Excellente ou Bonne
-                        }
-                    ),
-                    contentDescription = if (uiState.isConnected) {
-                        "WiFi connecté - Qualité: ${uiState.connectionQuality}"
-                    } else {
-                        "WiFi déconnecté - Aucune connexion"
-                    },
-                    tint = when {
-                        !uiState.isConnected -> MaterialTheme.colorScheme.error
-                        uiState.connectionQuality == "Faible" -> MaterialTheme.colorScheme.tertiary
-                        else -> MaterialTheme.colorScheme.primary
-                    },
-                    modifier = Modifier.size(24.dp)
-                )
-            }
+
         }
     }
 }

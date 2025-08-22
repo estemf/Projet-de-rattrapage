@@ -12,7 +12,12 @@ import androidx.compose.ui.unit.sp
  * Cette typographie définit une hiérarchie cohérente pour l'interface utilisateur
  * en respectant les principes Material Design 3 et l'identité Deezer.
  * 
- * @author Équipe DIIAGE
+ * Design patterns appliqués :
+ * - Typography System Pattern : hiérarchie cohérente des textes
+ * - Material Design 3 Pattern : respect des standards typographiques
+ * - Brand Integration Pattern : typographie adaptée à l'identité Deezer
+ * - Accessibility Pattern : tailles et espacements optimisés pour la lisibilité
+ * 
  * @since 1.0
  */
 

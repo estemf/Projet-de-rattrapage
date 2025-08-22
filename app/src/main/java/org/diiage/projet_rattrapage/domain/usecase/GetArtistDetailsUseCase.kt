@@ -50,7 +50,7 @@ data class ArtistDetails(
  * 
  * @property repository Repository pour l'accès aux données
  * 
- * @author Équipe DIIAGE
+
  * @since 1.0
  */
 class GetArtistDetailsUseCase(

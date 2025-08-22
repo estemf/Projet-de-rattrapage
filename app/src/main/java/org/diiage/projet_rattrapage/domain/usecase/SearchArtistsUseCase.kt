@@ -20,7 +20,7 @@ import timber.log.Timber
  * 
  * @property repository Repository pour l'accès aux données
  * 
- * @author Équipe DIIAGE
+
  * @since 1.0
  */
 class SearchArtistsUseCase(

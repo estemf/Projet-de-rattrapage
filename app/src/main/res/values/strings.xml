@@ -14,10 +14,10 @@
     
     <!-- Écran de recherche -->
     <string name="search_screen_title">Recherche d\'artistes</string>
-    <string name="search_hint_placeholder">Rechercher un artiste...</string>
+    <string name="search_hint_placeholder">Rechercher un artiste…</string>
     <string name="search_min_chars_error">Saisissez au moins 2 caractères</string>
     <string name="search_no_connection_error">Connexion Internet requise</string>
-    <string name="search_loading_message">Recherche en cours...</string>
+    <string name="search_loading_message">Recherche en cours…</string>
     <string name="search_empty_state_title">Recherchez votre artiste préféré</string>
     <string name="search_empty_state_subtitle">Saisissez au moins 2 caractères pour commencer</string>
     
@@ -37,27 +37,10 @@
     <string name="nav_search">Recherche</string>
     <string name="nav_artist_details">Détails de l\'artiste</string>
     <string name="nav_album_details">Détails de l\'album</string>
-    <string name="nav_connectivity">État de la connectivité</string>
+
     <string name="nav_settings">Paramètres</string>
     
-    <!-- ================================ -->
-    <!-- CONNECTIVITÉ ET RÉSEAU -->
-    <!-- ================================ -->
-    
-    <string name="connectivity_excellent">Excellente</string>
-    <string name="connectivity_good">Bonne</string>
-    <string name="connectivity_poor">Faible</string>
-    <string name="connectivity_none">Aucune</string>
-    
-    <string name="connectivity_wifi">WiFi</string>
-    <string name="connectivity_mobile">Mobile</string>
-    <string name="connectivity_ethernet">Ethernet</string>
-    <string name="connectivity_vpn">VPN</string>
-    <string name="connectivity_other">Autre</string>
-    
-    <string name="connectivity_status_title">État de la connectivité</string>
-    <string name="connectivity_disconnected_message">Aucune connexion Internet</string>
-    <string name="connectivity_limited_message">Connexion limitée</string>
+
     
     <!-- ================================ -->
     <!-- ACTIONS ET BOUTONS -->
@@ -109,7 +92,7 @@
     <!-- MESSAGES D'ERREUR -->
     <!-- ================================ -->
     
-    <string name="error_network_connection">Erreur de connexion réseau</string>
+
     <string name="error_search_failed">Erreur de recherche</string>
     <string name="error_artist_not_found">Artiste introuvable</string>
     <string name="error_album_not_found">Album introuvable</string>
@@ -139,7 +122,7 @@
     <string name="content_description_pause_button">Mettre en pause</string>
     <string name="content_description_share_button">Partager %1$s</string>
     <string name="content_description_back_button">Revenir en arrière</string>
-    <string name="content_description_connectivity_icon">Indicateur de connectivité</string>
+
     <string name="content_description_search_icon">Icône de recherche</string>
     <string name="content_description_clear_search">Effacer la recherche</string>
     

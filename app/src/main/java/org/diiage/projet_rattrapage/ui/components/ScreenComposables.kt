@@ -21,7 +21,7 @@ import org.diiage.projet_rattrapage.ui.navigation.NavigationManager
  * - Séparation des responsabilités
  * - Navigation centralisée
  * 
- * @author Équipe DIIAGE
+
  * @since 1.0
  */
 
@@ -109,96 +109,7 @@ fun AlbumDetailsScreen(
     }
 }
 
-/**
- * Écran de statut de connectivité avec logos WiFi
- * 
- * @param navigationManager Manager de navigation
- */
-@Composable
-fun ConnectivityStatusScreen(
-    navigationManager: NavigationManager
-) {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ) {
-        Text(
-            text = "📶 État de connectivité WiFi",
-            style = MaterialTheme.typography.headlineMedium,
-            textAlign = TextAlign.Center
-        )
-        
-        Spacer(modifier = Modifier.height(32.dp))
-        
-        // Exemples des différents états WiFi
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(16.dp)
-        ) {
-            // WiFi excellent
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(12.dp)
-            ) {
-                Icon(
-                    painter = painterResource(R.drawable.wifi),
-                    contentDescription = "WiFi excellent",
-                    tint = MaterialTheme.colorScheme.primary,
-                    modifier = Modifier.size(32.dp)
-                )
-                Text(
-                    text = "WiFi Excellent/Bon",
-                    style = MaterialTheme.typography.titleMedium
-                )
-            }
-            
-            // WiFi faible
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(12.dp)
-            ) {
-                Icon(
-                    painter = painterResource(R.drawable.wifi_low),
-                    contentDescription = "WiFi faible",
-                    tint = MaterialTheme.colorScheme.tertiary,
-                    modifier = Modifier.size(32.dp)
-                )
-                Text(
-                    text = "WiFi Faible",
-                    style = MaterialTheme.typography.titleMedium
-                )
-            }
-            
-            // WiFi déconnecté
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(12.dp)
-            ) {
-                Icon(
-                    painter = painterResource(R.drawable.wifi_disconnect),
-                    contentDescription = "WiFi déconnecté",
-                    tint = MaterialTheme.colorScheme.error,
-                    modifier = Modifier.size(32.dp)
-                )
-                Text(
-                    text = "WiFi Déconnecté",
-                    style = MaterialTheme.typography.titleMedium
-                )
-            }
-        }
-        
-        Spacer(modifier = Modifier.height(32.dp))
-        
-        Button(
-            onClick = { navigationManager.navigateBack() }
-        ) {
-            Text("Retour")
-        }
-    }
-}
+
 
 /**
  * Écran des paramètres

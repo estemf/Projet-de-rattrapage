@@ -19,7 +19,7 @@ import org.diiage.projet_rattrapage.domain.model.Track
  * - Faciliter les tests unitaires
  * - Respecter la séparation des responsabilités
  * 
- * @author Équipe DIIAGE
+
  * @since 1.0
  */
 interface MusicRepository {
