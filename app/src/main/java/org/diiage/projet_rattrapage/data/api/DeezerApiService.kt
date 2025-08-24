@@ -187,18 +187,5 @@ interface DeezerApiService {
         @Path("id") trackId: Long
     ): Response<TrackDto>
     
-    companion object {
-        /**
-         * URL de base de l'API Deezer
-         */
-        const val BASE_URL = "https://api.deezer.com/"
-        
-        /**
-         * Limites par défaut pour les différents types de contenu
-         */
-        const val DEFAULT_SEARCH_LIMIT = 25
-        const val DEFAULT_ALBUMS_LIMIT = 50
-        const val DEFAULT_TRACKS_LIMIT = 50
-        const val MAX_SEARCH_LIMIT = 100
-    }
+
 } 

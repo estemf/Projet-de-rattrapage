@@ -134,39 +134,9 @@ data class TrackDto(
         return id > 0 && (title.isNotBlank() || titleShort.isNotBlank())
     }
     
-    /**
-     * Indique si cette piste a un aperçu audio disponible
-     * 
-     * @return true si un URL d'aperçu est disponible
-     */
-    fun hasPreview(): Boolean {
-        return preview.isNotBlank() && preview.startsWith("http")
-    }
+
     
-    /**
-     * Calcule le score de popularité normalisé
-     * 
-     * Le rank Deezer va de 0 à 1000000, on le normalise sur 100
-     * 
-     * @return Score de popularité entre 0 et 100
-     */
-    fun getPopularityScore(): Int {
-        return (rank / 10000.0).toInt().coerceIn(0, 100)
-    }
-    
-    /**
-     * Retourne le titre complet avec version si applicable
-     * 
-     * @return Titre formaté avec version (ex: "Song (Remix)")
-     */
-    fun getFullTitle(): String {
-        val baseTitle = getCleanTitle()
-        return if (titleVersion.isNotBlank() && !baseTitle.contains(titleVersion)) {
-            "$baseTitle ($titleVersion)"
-        } else {
-            baseTitle
-        }
-    }
+
 }
 
 /**
@@ -184,22 +154,4 @@ fun List<TrackDto>.toDomainModels(): List<Track> {
         .map { it.toDomainModel() }
 }
 
-/**
- * Filtre les pistes valides et trie par popularité (rank décroissant)
- * 
- * @return Liste des TrackDto valides triées par popularité
- */
-fun List<TrackDto>.filterValidAndSortByPopularity(): List<TrackDto> {
-    return this
-        .filter { it.isValid() }
-        .sortedByDescending { it.rank }
-}
-
-/**
- * Filtre uniquement les pistes ayant un aperçu audio
- * 
- * @return Liste des TrackDto avec aperçu disponible
- */
-fun List<TrackDto>.filterWithPreview(): List<TrackDto> {
-    return this.filter { it.hasPreview() }
-} 
+ 

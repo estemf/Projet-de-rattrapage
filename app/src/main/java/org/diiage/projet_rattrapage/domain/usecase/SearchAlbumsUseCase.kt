@@ -89,21 +89,5 @@ class SearchAlbumsUseCase(
         return cleanQuery.length >= 2 && cleanQuery.isNotBlank()
     }
     
-    /**
-     * Retourne les suggestions de recherche pour les albums
-     * 
-     * @return Liste de suggestions populaires
-     */
-    fun getSearchSuggestions(): List<String> {
-        return listOf(
-            "Greatest Hits",
-            "Best of",
-            "Live",
-            "Acoustic",
-            "Unplugged",
-            "Collection",
-            "Essential",
-            "Classics"
-        )
-    }
+
 } 

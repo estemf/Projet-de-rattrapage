@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.collectLatest
+
 import kotlinx.coroutines.launch
 import org.diiage.projet_rattrapage.data.hardware.AudioManager
 import org.diiage.projet_rattrapage.domain.model.Artist
@@ -18,7 +18,7 @@ import org.diiage.projet_rattrapage.domain.usecase.SearchArtistsUseCase
 import org.diiage.projet_rattrapage.domain.usecase.SearchAlbumsUseCase
 import org.diiage.projet_rattrapage.domain.usecase.SearchTracksUseCase
 import org.diiage.projet_rattrapage.ui.theme.ThemeManager
-import org.diiage.projet_rattrapage.ui.navigation.NavigationManager
+
 import org.diiage.projet_rattrapage.utils.launchSafely
 import org.diiage.projet_rattrapage.utils.logEvent
 import org.diiage.projet_rattrapage.utils.logViewModelState
@@ -46,7 +46,7 @@ import timber.log.Timber
  * - Events pour les effets de bord
  * 
  * @property searchArtistsUseCase Use case pour la recherche d'artistes
- * @property navigationManager Manager de navigation centralisé
+
  * @property audioManager Manager audio hardware
  * @property audioManager Manager audio pour feedback haptique
  * 
@@ -57,7 +57,6 @@ class SearchViewModel(
     private val searchArtistsUseCase: SearchArtistsUseCase,
     private val searchAlbumsUseCase: SearchAlbumsUseCase,
     private val searchTracksUseCase: SearchTracksUseCase,
-    private val navigationManager: NavigationManager,
     private val audioManager: AudioManager
 ) : ViewModel() {
     

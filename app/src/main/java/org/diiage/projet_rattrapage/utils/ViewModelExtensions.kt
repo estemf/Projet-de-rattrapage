@@ -81,63 +81,7 @@ fun ViewModel.launchSafely(
     }
 }
 
-/**
- * Lance une coroutine avec gestion d'erreurs et indicateur de chargement
- * 
- * Cette extension gère automatiquement l'état de chargement en plus
- * de la gestion d'erreurs, idéale pour les opérations UI
- * 
- * @param onError Callback pour traiter les erreurs
- * @param onStart Callback appelé au début (pour afficher le loading)
- * @param onComplete Callback appelé à la fin (succès ou erreur)
- * @param block Code suspendable à exécuter
- * @return Job de la coroutine lancée
- * 
- * @sample
- * ```kotlin
- * fun loadArtistDetails(artistId: Long) {
- *     launchWithLoading(
- *         onStart = { _isLoading.value = true },
- *         onComplete = { _isLoading.value = false },
- *         onError = { error -> 
- *             _errorMessage.value = "Impossible de charger l'artiste"
- *         }
- *     ) {
- *         val details = getArtistDetailsUseCase(artistId).getOrThrow()
- *         _artistDetails.value = details
- *     }
- * }
- * ```
- */
-fun ViewModel.launchWithLoading(
-    onError: ((Throwable) -> Unit)? = null,
-    onStart: (() -> Unit)? = null,
-    onComplete: (() -> Unit)? = null,
-    block: suspend CoroutineScope.() -> Unit
-): Job {
-    val viewModelName = this::class.simpleName ?: "UnknownViewModel"
-    
-    return launchSafely(
-        onError = { exception ->
-            onError?.invoke(exception)
-            onComplete?.invoke()
-        }
-    ) {
-        try {
-            Timber.d("📊 Démarrage d'opération avec loading dans $viewModelName")
-            onStart?.invoke()
-            
-            block()
-            
-            Timber.d("📊 Opération avec loading terminée dans $viewModelName")
-        } finally {
-            // S'assure que onComplete est appelé même en cas de succès
-            if (onError == null) { // Si pas d'erreur gérée dans le catch onError
-                onComplete?.invoke()
-            }
-        }
-    }
-}
+
 
 // ================================
 // EXTENSIONS POUR LE LOGGING AVANCÉ
@@ -241,35 +185,4 @@ fun ViewModel.logEvent(
 // EXTENSIONS POUR LA GESTION DES RESSOURCES
 // ================================
 
-/**
- * Exécute une action lors de la destruction du ViewModel
- * 
- * Cette extension permet d'enregistrer des callbacks de nettoyage
- * qui seront exécutés automatiquement dans onCleared()
- * 
- * @param cleanupAction Action à exécuter lors de la destruction
- * 
- * @sample
- * ```kotlin
- * init {
- *     onDestroy {
- *         audioManager.release()
- *         // Surveillance de connectivité supprimée
- *     }
- * }
- * ```
- */
-fun ViewModel.onDestroy(cleanupAction: () -> Unit) {
-    try {
-        // Note: Cette implémentation nécessiterait une classe ViewModel personnalisée
-        // pour stocker les callbacks. Pour la démonstration, on log l'enregistrement
-        val viewModelName = this::class.simpleName ?: "UnknownViewModel"
-        Timber.d("🧹 Callback de nettoyage enregistré pour $viewModelName")
-        
-        // Dans une implémentation réelle, on stockerait cleanupAction
-        // dans une liste et on l'exécuterait dans onCleared()
-        
-    } catch (exception: Exception) {
-        Timber.e(exception, "❌ Erreur lors de l'enregistrement du callback de nettoyage")
-    }
-} 
+ 

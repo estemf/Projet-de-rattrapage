@@ -122,20 +122,7 @@ data class AlbumDto(
         return id > 0 && title.isNotBlank()
     }
     
-    /**
-     * Retourne l'URL de couverture la plus appropriée
-     * 
-     * @return URL de la meilleure couverture disponible
-     */
-    fun getBestCoverUrl(): String {
-        return coverXl.ifEmpty { 
-            coverBig.ifEmpty { 
-                coverMedium.ifEmpty { 
-                    coverSmall.ifEmpty { cover } 
-                } 
-            } 
-        }
-    }
+
 }
 
 /**
@@ -153,13 +140,4 @@ fun List<AlbumDto>.toDomainModels(): List<Album> {
         .map { it.toDomainModel() }
 }
 
-/**
- * Filtre les albums par validité et trie par date de sortie (plus récent en premier)
- * 
- * @return Liste des AlbumDto valides triés par date
- */
-fun List<AlbumDto>.filterValidAndSort(): List<AlbumDto> {
-    return this
-        .filter { it.isValid() }
-        .sortedByDescending { it.releaseDate }
-} 
+ 

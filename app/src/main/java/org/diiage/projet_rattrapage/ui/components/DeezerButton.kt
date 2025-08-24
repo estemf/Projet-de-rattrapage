@@ -1,6 +1,6 @@
 package org.diiage.projet_rattrapage.ui.components
 
-import androidx.compose.foundation.BorderStroke
+
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
@@ -15,7 +15,37 @@ import androidx.compose.ui.tooling.preview.Preview
 import org.diiage.projet_rattrapage.ui.theme.Projet_RattrapageTheme
 
 /**
- * Bouton principal Deezer
+ * Bouton principal Deezer avec support d'icône
+ * 
+ * Ce composant applique les principes du design system Deezer :
+ * - Couleurs primaires de la marque
+ * - Hauteur standardisée de 48dp
+ * - Coins arrondis de 8dp
+ * - Support d'icônes avec espacement automatique
+ * 
+ * Design patterns appliqués :
+ * - Builder Pattern : configuration flexible via Modifier
+ * - Strategy Pattern : comportements différents selon l'état enabled
+ * - Composition Pattern : assemblage d'éléments UI
+ * 
+ * @param onClick Callback exécuté lors du clic sur le bouton
+ * @param modifier Modifier pour la customisation du layout et du style
+ * @param enabled État d'activation du bouton (désactivé si false)
+ * @param icon Icône optionnelle affichée à gauche du contenu
+ * @param content Contenu du bouton (généralement du texte)
+ * 
+ * @sample
+ * ```kotlin
+ * DeezerPrimaryButton(
+ *     onClick = { /* action */ },
+ *     icon = Icons.Default.Search
+ * ) {
+ *     Text("Rechercher")
+ * }
+ * ```
+ * 
+ * @see DeezerTextButton pour un style de bouton texte
+ * @since 1.0
  */
 @Composable
 fun DeezerPrimaryButton(
@@ -57,7 +87,36 @@ fun DeezerPrimaryButton(
 }
 
 /**
- * Bouton texte simple avec icône
+ * Bouton texte simple avec icône optionnelle
+ * 
+ * Ce composant fournit un style de bouton texte pour les actions secondaires :
+ * - Couleur primaire de la marque Deezer
+ * - Support d'icônes avec espacement réduit
+ * - Style minimaliste pour les actions non-principales
+ * 
+ * Utilisé pour :
+ * - Actions secondaires dans les formulaires
+ * - Liens de navigation
+ * - Boutons d'annulation ou de retour
+ * 
+ * @param onClick Callback exécuté lors du clic sur le bouton
+ * @param modifier Modifier pour la customisation du layout et du style
+ * @param enabled État d'activation du bouton (désactivé si false)
+ * @param icon Icône optionnelle affichée à gauche du contenu
+ * @param content Contenu du bouton (généralement du texte)
+ * 
+ * @sample
+ * ```kotlin
+ * DeezerTextButton(
+ *     onClick = { /* action */ },
+ *     icon = Icons.Default.ArrowBack
+ * ) {
+ *     Text("Retour")
+ * }
+ * ```
+ * 
+ * @see DeezerPrimaryButton pour le style de bouton principal
+ * @since 1.0
  */
 @Composable
 fun DeezerTextButton(

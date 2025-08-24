@@ -43,61 +43,9 @@ data class DetailsUiState(
      * 
      * @return true si au moins un type de données est présent
      */
-    fun hasData(): Boolean = artist != null || album != null || track != null
+
     
-    /**
-     * Indique si l'état est en erreur
-     * 
-     * @return true si une erreur est présente
-     */
-    fun isInError(): Boolean = error != null
-    
-    /**
-     * Retourne le titre principal selon le type de contenu
-     * 
-     * Applique le principe de polymorphisme conceptuel
-     * en adaptant l'affichage selon le type de données
-     * 
-     * @return Titre principal ou chaîne vide si pas de données
-     */
-    fun getMainTitle(): String = when {
-        artist != null -> artist.name
-        album != null -> album.title
-        track != null -> track.title
-        else -> ""
-    }
-    
-    /**
-     * Retourne le sous-titre selon le type de contenu
-     * 
-     * @return Sous-titre contextuel ou chaîne vide
-     */
-    fun getSubtitle(): String = when {
-        album != null -> album.getArtistName()
-        track != null -> "${track.getArtistName()} • ${track.getAlbumTitle()}"
-        else -> ""
-    }
-    
-    /**
-     * Retourne l'URL de l'image principale selon le type de contenu
-     * 
-     * Délégation vers les méthodes appropriées des modèles
-     * 
-     * @return URL de l'image ou chaîne vide si indisponible
-     */
-    fun getImageUrl(): String = when {
-        artist != null -> artist.getImageUrl()
-        album != null -> album.getCoverUrl()
-        track != null -> track.getCoverUrl()
-        else -> ""
-    }
-    
-    /**
-     * Indique si une image est disponible pour l'affichage
-     * 
-     * @return true si une URL d'image est disponible
-     */
-    fun hasImage(): Boolean = getImageUrl().isNotEmpty()
+
     
 
     

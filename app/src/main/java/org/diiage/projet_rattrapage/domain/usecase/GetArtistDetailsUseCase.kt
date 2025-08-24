@@ -21,21 +21,7 @@ data class ArtistDetails(
     val artist: Artist,
     val albums: List<Album> = emptyList(),
     val topTracks: List<Track> = emptyList()
-) {
-    /**
-     * Indique si l'artiste a du contenu disponible
-     * 
-     * @return true si l'artiste a au moins un album ou une piste
-     */
-    fun hasContent(): Boolean = albums.isNotEmpty() || topTracks.isNotEmpty()
-    
-    /**
-     * Retourne le nombre total de contenus
-     * 
-     * @return Nombre d'albums + nombre de pistes
-     */
-    fun getTotalContentCount(): Int = albums.size + topTracks.size
-}
+)
 
 /**
  * Use Case pour récupérer les détails complets d'un artiste
@@ -140,17 +126,5 @@ class GetArtistDetailsUseCase(
         }
     }
     
-    /**
-     * Récupère uniquement les informations de base d'un artiste
-     * 
-     * Méthode plus légère quand on n'a pas besoin des albums/pistes
-     * 
-     * @param artistId Identifiant de l'artiste
-     * @return Result contenant l'artiste ou une erreur
-     */
-    suspend fun getBasicInfo(artistId: Long): Result<Artist> {
-        Timber.d("ℹ️ Récupération des infos de base pour l'artiste ID: $artistId")
-        
-        return repository.getArtistById(artistId)
-    }
+
 } 

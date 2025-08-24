@@ -2,7 +2,6 @@ package org.diiage.projet_rattrapage.data.repository
 
 import org.diiage.projet_rattrapage.data.api.DeezerApiService
 import org.diiage.projet_rattrapage.data.dto.toDomainModels
-import org.diiage.projet_rattrapage.data.hardware.AudioManager
 import org.diiage.projet_rattrapage.domain.model.Artist
 import org.diiage.projet_rattrapage.domain.model.Album
 import org.diiage.projet_rattrapage.domain.model.Track
@@ -32,8 +31,7 @@ import java.net.HttpURLConnection
  * @since 1.0
  */
 class MusicRepositoryImpl(
-    private val apiService: DeezerApiService,
-    private val audioManager: AudioManager
+    private val apiService: DeezerApiService
 ) : MusicRepository {
     
     // ================================

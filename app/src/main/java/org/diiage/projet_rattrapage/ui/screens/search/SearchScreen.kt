@@ -116,7 +116,6 @@ fun SearchScreen(
         // ================================
         
         SearchHeaderSection(
-            uiState = uiState,
             onThemeToggle = {
                 viewModel.handleAction(SearchAction.ToggleTheme)
             }
@@ -234,7 +233,6 @@ fun SearchScreen(
  */
 @Composable
 private fun SearchHeaderSection(
-    uiState: SearchUiState,
     onThemeToggle: () -> Unit
 ) {
     val isDarkTheme by ThemeManager.isDarkTheme.collectAsStateWithLifecycle()
@@ -734,7 +732,7 @@ private fun SearchTypeSelectorSection(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
-        SearchType.values().forEach { type ->
+        SearchType.entries.forEach { type ->
             FilterChip(
                 selected = type == selectedType,
                 onClick = { onTypeSelected(type) },

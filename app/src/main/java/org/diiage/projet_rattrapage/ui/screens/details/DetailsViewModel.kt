@@ -6,11 +6,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import org.diiage.projet_rattrapage.domain.model.Album
-import org.diiage.projet_rattrapage.domain.model.Artist
-import org.diiage.projet_rattrapage.domain.model.Track
 import org.diiage.projet_rattrapage.domain.usecase.GetArtistDetailsUseCase
-import org.diiage.projet_rattrapage.domain.usecase.ArtistDetails
 import org.diiage.projet_rattrapage.domain.repository.MusicRepository
 import org.diiage.projet_rattrapage.data.hardware.AudioPlayer
 import timber.log.Timber
@@ -45,8 +41,13 @@ import timber.log.Timber
 class DetailsViewModel(
     private val getArtistDetailsUseCase: GetArtistDetailsUseCase,
     private val musicRepository: MusicRepository,
-    private val audioPlayer: AudioPlayer
+    audioPlayer: AudioPlayer
 ) : ViewModel() {
+    
+    /**
+     * Lecteur audio pour les extraits de pistes
+     */
+    val audioPlayerInstance: AudioPlayer = audioPlayer
     
     // ================================
     // ÉTAT PRIVÉ ET PUBLIC
@@ -68,13 +69,7 @@ class DetailsViewModel(
      */
     val uiState: StateFlow<DetailsUiState> = _uiState.asStateFlow()
     
-    /**
-     * Lecteur audio pour les extraits de pistes
-     * 
-     * Exposé publiquement pour permettre à l'UI d'accéder
-     * aux fonctionnalités de lecture audio
-     */
-    val audioPlayerInstance: AudioPlayer = audioPlayer
+
     
     // ================================
     // ACTIONS PUBLIQUES
@@ -115,28 +110,7 @@ class DetailsViewModel(
         }
     }
     
-    /**
-     * Recharge les données actuelles
-     * 
-     * Utile pour les actions de retry de l'utilisateur
-     */
-    fun refreshDetails() {
-        val currentState = _uiState.value
-        when {
-            currentState.artist != null -> {
-                loadDetails(DetailsType.ARTIST, currentState.artist.id)
-            }
-            currentState.album != null -> {
-                loadDetails(DetailsType.ALBUM, currentState.album.id)
-            }
-            currentState.track != null -> {
-                loadDetails(DetailsType.TRACK, currentState.track.id)
-            }
-            else -> {
-                Timber.w("⚠️ Impossible de recharger : aucune donnée actuelle")
-            }
-        }
-    }
+
     
     // ================================
     // MÉTHODES PRIVÉES DE CHARGEMENT
@@ -264,22 +238,7 @@ class DetailsViewModel(
     // MÉTHODES UTILITAIRES
     // ================================
     
-    /**
-     * Réinitialise l'état à sa valeur par défaut
-     * 
-     * Utile pour les transitions entre écrans
-     */
-    fun clearState() {
-        _uiState.value = DetailsUiState()
-        Timber.d("🧹 État du ViewModel réinitialisé")
-    }
-    
-    /**
-     * Indique si des données sont actuellement chargées
-     * 
-     * @return true si l'état contient des données valides
-     */
-    fun hasLoadedData(): Boolean = _uiState.value.hasData()
+
     
     override fun onCleared() {
         super.onCleared()

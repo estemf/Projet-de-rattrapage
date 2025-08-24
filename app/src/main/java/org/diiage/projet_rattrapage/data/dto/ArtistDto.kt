@@ -129,11 +129,4 @@ fun List<ArtistDto>.toDomainModels(): List<Artist> {
         .map { it.toDomainModel() }
 }
 
-/**
- * Filtre les artistes par validité
- * 
- * @return Liste des ArtistDto valides uniquement
- */
-fun List<ArtistDto>.filterValid(): List<ArtistDto> {
-    return this.filter { it.isValid() }
-} 
+ 

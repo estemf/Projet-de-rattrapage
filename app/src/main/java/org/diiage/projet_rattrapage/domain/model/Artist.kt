@@ -51,15 +51,7 @@ data class Artist(
         }
     }
     
-    /**
-     * Indique si l'artiste a des informations d'image disponibles
-     * 
-     * @return true si au moins une URL d'image est disponible
-     */
-    fun hasImage(): Boolean = picture.isNotEmpty() || 
-                              pictureSmall.isNotEmpty() || 
-                              pictureMedium.isNotEmpty() || 
-                              pictureBig.isNotEmpty()
+
     
     /**
      * Formate le nombre de fans pour l'affichage

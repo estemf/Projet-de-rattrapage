@@ -31,49 +31,6 @@ data class DeezerApiResponse<T>(
     
     @SerialName("prev")
     val prev: String? = null
-) {
-    /**
-     * Indique si des résultats sont disponibles
-     */
-    fun hasResults(): Boolean = data.isNotEmpty()
-    
-    /**
-     * Indique si une page suivante est disponible
-     */
-    fun hasNextPage(): Boolean = next != null
-    
-    /**
-     * Indique si une page précédente est disponible  
-     */
-    fun hasPreviousPage(): Boolean = prev != null
-}
-
-/**
- * DTO pour les réponses d'erreur de l'API Deezer
- * 
- * @property error Informations sur l'erreur
- */
-@Serializable
-data class DeezerErrorResponse(
-    @SerialName("error")
-    val error: DeezerError
 )
 
-/**
- * DTO pour les détails d'une erreur Deezer
- * 
- * @property type Type d'erreur
- * @property message Message d'erreur
- * @property code Code d'erreur numérique
- */
-@Serializable
-data class DeezerError(
-    @SerialName("type")
-    val type: String = "",
-    
-    @SerialName("message") 
-    val message: String = "",
-    
-    @SerialName("code")
-    val code: Int = 0
-) 
+ 

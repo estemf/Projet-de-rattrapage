@@ -1,14 +1,11 @@
 package org.diiage.projet_rattrapage.ui.theme
 
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
 /**
- * Gestionnaire de thème pour l'application Deezer Music
+ * Gestionnaire centralisé de thème pour l'application Deezer Music
  * 
  * Cette classe applique le pattern Singleton pour gérer l'état du thème
  * de manière centralisée dans toute l'application.
@@ -21,10 +18,13 @@ import kotlinx.coroutines.flow.asStateFlow
  * 
  * Responsabilités :
  * - Gestion de l'état dark/light mode
- * - Persistance des préférences utilisateur
+ * - Persistance des préférences utilisateur  
  * - Réactivité via StateFlow
+ * - API simple pour basculer entre les thèmes
  * 
  * @since 1.0
+ * @see StateFlow
+ * @see Projet_RattrapageTheme
  */
 object ThemeManager {
     
@@ -41,12 +41,6 @@ object ThemeManager {
     private val _isDarkTheme = MutableStateFlow(false)
     val isDarkTheme: StateFlow<Boolean> = _isDarkTheme.asStateFlow()
     
-    /**
-     * Valeur actuelle du mode sombre
-     */
-    val currentIsDarkTheme: Boolean
-        get() = _isDarkTheme.value
-    
     // ================================
     // ACTIONS DE THÈME
     // ================================
@@ -62,22 +56,6 @@ object ThemeManager {
     }
     
     /**
-     * Définit explicitement le mode du thème
-     * 
-     * @param isDark true pour le mode sombre, false pour le mode clair
-     */
-    fun setDarkTheme(isDark: Boolean) {
-        _isDarkTheme.value = isDark
-    }
-    
-    /**
-     * Réinitialise le thème au mode par défaut (clair)
-     */
-    fun resetToDefault() {
-        _isDarkTheme.value = false
-    }
-    
-    /**
      * Retourne une description textuelle du mode actuel
      * 
      * @return "Mode sombre" ou "Mode clair"
@@ -85,4 +63,4 @@ object ThemeManager {
     fun getCurrentThemeDescription(): String {
         return if (_isDarkTheme.value) "Mode sombre" else "Mode clair"
     }
-} 
+}

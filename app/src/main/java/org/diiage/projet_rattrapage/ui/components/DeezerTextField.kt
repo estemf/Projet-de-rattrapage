@@ -11,11 +11,11 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
-import androidx.compose.ui.graphics.vector.ImageVector
+
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.input.VisualTransformation
+
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.input.key.Key
@@ -45,7 +45,11 @@ import org.diiage.projet_rattrapage.ui.theme.Projet_RattrapageTheme
  * - Icônes contextuelles
  * - Feedback visuel d'état
  * 
-
+ * Design patterns appliqués :
+ * - Builder Pattern : configuration flexible via Modifier
+ * - Strategy Pattern : comportements différents selon le type
+ * - Observer Pattern : réactivité aux changements de valeur
+ * 
  * @since 1.0
  */
 
@@ -61,19 +65,46 @@ import org.diiage.projet_rattrapage.ui.theme.Projet_RattrapageTheme
  * Champ de recherche Deezer optimisé pour la musique
  * 
  * Spécialement conçu pour :
- * - Recherche d'artistes
- * - Suggestions automatiques
- * - Validation de requête
- * - Actions rapides
+ * - Recherche d'artistes, albums et pistes
+ * - Suggestions automatiques en temps réel
+ * - Validation de requête (minimum 2 caractères)
+ * - Actions rapides (recherche, effacement)
+ * 
+ * Caractéristiques techniques :
+ * - Validation en temps réel avec feedback visuel
+ * - Gestion des états (loading, error, success)
+ * - Support des actions clavier (recherche sur Entrée)
+ * - Focus management automatique
  * 
  * @param value Valeur actuelle de la recherche
- * @param onValueChange Callback de changement de valeur
- * @param onSearch Callback d'exécution de la recherche
- * @param modifier Modifier pour la customisation
- * @param placeholder Texte d'aide à la saisie
- * @param enabled État activé/désactivé
- * @param isLoading Indicateur de chargement
- * @param error Message d'erreur optionnel
+ * @param onValueChange Callback de changement de valeur (validation en temps réel)
+ * @param onSearch Callback d'exécution de la recherche (validation finale)
+ * @param modifier Modifier pour la customisation du layout et du style
+ * @param placeholder Texte d'aide à la saisie (contexte de recherche)
+ * @param enabled État activé/désactivé du champ
+ * @param isLoading Indicateur de chargement pendant la recherche
+ * @param error Message d'erreur optionnel (validation ou API)
+ * 
+ * @sample
+ * ```kotlin
+ * DeezerSearchField(
+ *     value = searchQuery,
+ *     onValueChange = { query -> 
+ *         searchQuery = query
+ *         validateQuery(query)
+ *     },
+ *     onSearch = { query -> 
+ *         if (query.trim().length >= 2) {
+ *             performSearch(query)
+ *         }
+ *     },
+ *     isLoading = isSearching,
+ *     error = searchError
+ * )
+ * ```
+ * 
+
+ * @since 1.0
  */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

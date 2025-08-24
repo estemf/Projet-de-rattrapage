@@ -85,15 +85,7 @@ data class Album(
         return releaseDate
     }
     
-    /**
-     * Indique si l'album a une couverture disponible
-     * 
-     * @return true si au moins une URL de couverture est disponible
-     */
-    fun hasCover(): Boolean = cover.isNotEmpty() || 
-                              coverSmall.isNotEmpty() || 
-                              coverMedium.isNotEmpty() || 
-                              coverBig.isNotEmpty()
+
                               
     /**
      * Retourne le nom de l'artiste ou "Artiste inconnu"

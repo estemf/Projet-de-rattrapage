@@ -13,7 +13,7 @@ import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Star
-import androidx.compose.material.icons.filled.Settings
+
 import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -25,7 +25,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextOverflow
+
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
@@ -478,7 +478,7 @@ private fun TrackDetailsCard(
                 
                 if (track.trackPosition > 0) {
                     StatisticItem(
-                        icon = Icons.Filled.Settings,
+                        icon = Icons.Filled.PlayArrow,
                         label = "Piste",
                         value = track.trackPosition.toString()
                     )

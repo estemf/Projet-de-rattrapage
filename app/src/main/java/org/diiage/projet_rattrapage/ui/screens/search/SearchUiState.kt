@@ -108,25 +108,7 @@ data class SearchUiState(
             else -> null
         }
     
-    /**
-     * Nombre total de résultats selon le type sélectionné
-     */
-    val resultCount: Int
-        get() = when (selectedSearchType) {
-            SearchType.ARTISTS -> searchResults.size
-            SearchType.ALBUMS -> albumResults.size
-            SearchType.TRACKS -> trackResults.size
-        }
-    
-    /**
-     * Texte du bouton de recherche
-     */
-    val searchButtonText: String
-        get() = if (isLoading) {
-            "Recherche..."
-        } else {
-            "Rechercher ${selectedSearchType.displayName}"
-        }
+
 }
 
 /**
@@ -136,12 +118,11 @@ data class SearchUiState(
  */
 enum class SearchType(
     val displayName: String,
-    val pluralName: String,
-    val icon: String
+    val pluralName: String
 ) {
-    ARTISTS("Artiste", "Artistes", "🎤"),
-    ALBUMS("Album", "Albums", "💿"),
-    TRACKS("Piste", "Pistes", "🎵");
+    ARTISTS("Artiste", "Artistes"),
+    ALBUMS("Album", "Albums"),
+    TRACKS("Piste", "Pistes");
     
     /**
      * Retourne le type suivant dans l'ordre cyclique

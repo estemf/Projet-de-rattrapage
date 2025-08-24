@@ -2,47 +2,50 @@ package org.diiage.projet_rattrapage.ui.theme
 
 import android.app.Activity
 import android.os.Build
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import org.diiage.projet_rattrapage.ui.theme.DeezerDarkColorScheme
-import org.diiage.projet_rattrapage.ui.theme.DeezerLightColorScheme
-import org.diiage.projet_rattrapage.ui.theme.DeezerTypography
 
 /**
- * Thème principal de l'application Deezer Music
+ * Composable de thème principal pour l'application Deezer Music
  * 
- * Ce thème applique les principes du Design System Deezer :
- * - Couleurs brandées avec support dark/light mode
- * - Typographie musicale spécialisée
- * - Cohérence visuelle garantie
- * - Support des couleurs dynamiques Android 12+
+ * Ce thème applique les principes du Design System Deezer et Material Design 3 :
+ * - Couleurs brandées avec support dark/light mode automatique
+ * - Typographie musicale spécialisée et accessible
+ * - Cohérence visuelle garantie sur tous les écrans
+ * - Support des couleurs dynamiques Material You (Android 12+)
+ * - Configuration edge-to-edge moderne
  * 
  * Design patterns appliqués :
  * - Theme Pattern : gestion centralisée des thèmes
  * - Dynamic Color Pattern : support des couleurs système Android 12+
  * - Brand Integration Pattern : intégration cohérente de l'identité Deezer
  * - Edge-to-Edge Pattern : design moderne sans bordures
+ * - Strategy Pattern : sélection automatique du schéma de couleurs
  * 
- * Fonctionnalités :
+ * Fonctionnalités avancées :
  * - Détection automatique du thème système
+ * - Intégration avec ThemeManager pour la persistance
  * - Support des couleurs dynamiques Material You
- * - Configuration de la status bar
- * - Edge-to-edge design
+ * - Configuration automatique de la status bar
+ * - Design edge-to-edge pour une expérience immersive
  * 
- * @param darkTheme Force le mode sombre (null = automatique)
- * @param dynamicColor Active les couleurs dynamiques sur Android 12+
- * @param content Contenu de l'application
+ * @param darkTheme Force le mode sombre (null = utilise ThemeManager)
+ * @param dynamicColor Active les couleurs dynamiques Material You sur Android 12+
+ * @param content Contenu de l'application à thématiser
+ * 
  * @since 1.0
+ * @see ThemeManager
+ * @see DeezerLightColorScheme
+ * @see DeezerDarkColorScheme
+ * @see DeezerTypography
  */
 @Composable
 fun Projet_RattrapageTheme(
@@ -92,8 +95,9 @@ fun Projet_RattrapageTheme(
         SideEffect {
             val window = (view.context as Activity).window
             
-            // Définit la couleur de la status bar selon le thème
-            window.statusBarColor = colorScheme.primary.toArgb()
+            // Configuration de la status bar compatible avec toutes les versions
+            // Utilise WindowCompat pour une approche moderne et rétrocompatible
+            WindowCompat.setDecorFitsSystemWindows(window, false)
             
             // Configure les icônes de la status bar (clair/sombre)
             WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = !effectiveDarkTheme

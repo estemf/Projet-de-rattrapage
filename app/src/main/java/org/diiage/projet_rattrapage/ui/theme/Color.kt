@@ -1,9 +1,12 @@
 package org.diiage.projet_rattrapage.ui.theme
 
+import androidx.compose.material3.darkColorScheme
+import androidx.compose.material3.lightColorScheme
 import androidx.compose.ui.graphics.Color
+import androidx.compose.material3.ColorScheme
 
 /**
- * Palette de couleurs personnalisées pour l'application Deezer Music
+ * Système de couleurs Material Design 3 pour l'application Deezer Music
  * 
  * Cette palette applique les principes de Material Design 3 et respecte :
  * - Les guidelines Material Design 3 pour la cohérence visuelle
@@ -15,8 +18,12 @@ import androidx.compose.ui.graphics.Color
  * - Color Scheme Pattern : thèmes clair/sombre cohérents
  * - Brand Color Pattern : palette centrée sur l'identité Deezer
  * - Accessibility Pattern : couleurs respectant les standards WCAG
- * 
+ * - Material You Pattern : support des couleurs dynamiques Android 12+
+ 
  * @since 1.0
+ * @see DeezerLightColorScheme
+ * @see DeezerDarkColorScheme
+ * @see androidx.compose.material3.ColorScheme
  */
 
 // ================================
@@ -27,10 +34,6 @@ import androidx.compose.ui.graphics.Color
 val DeezerPurple = Color(0xFF6200EE)
 val DeezerPurpleLight = Color(0xFFBB86FC)
 val DeezerPurpleDark = Color(0xFF3700B3)
-
-/** Couleurs de support pour l'interface */
-val DeezerGray = Color(0xFF757575)
-val DeezerWhite = Color(0xFFFFFFFF)
 
 // ================================
 // COULEURS SYSTÈME ET ACCENT
@@ -56,19 +59,33 @@ val DeezerBackgroundDark = Color(0xFF17120D)
 val DeezerSurfaceLight = Color(0xFFFFFBFF)
 val DeezerSurfaceDark = Color(0xFF17120D)
 
-
-
 // ================================
 // EXTENSIONS POUR COLORSCHEME
 // ================================
 
 /**
  * Extension pour accéder à la couleur violette Deezer depuis un ColorScheme
+ * 
+ * Cette extension fait partie du Design System Deezer et permet d'accéder
+ * facilement à la couleur de marque depuis n'importe quel ColorScheme Material 3.
+ * 
+ * Utilisée dans les composants UI pour maintenir la cohérence visuelle :
+ * - DeezerTextField : bordures et curseur
+ * - AudioPreviewPlayer : icônes et contrôles
+ * - DetailsScreen : éléments d'interface brandés
+ * 
+ * Design patterns appliqués :
+ * - Extension Function Pattern : étend ColorScheme avec des couleurs brandées
+ * - Brand Integration Pattern : intégration transparente de l'identité Deezer
+ * 
+ * @receiver ColorScheme Le schéma de couleurs Material 3 à étendre
+ * @return Color La couleur violette caractéristique de Deezer
+ * @since 1.0
+ * @see DeezerPurple
+ * @see androidx.compose.material3.ColorScheme
  */
-val androidx.compose.material3.ColorScheme.deezerPurple: Color
+val ColorScheme.deezerPurple: Color
     get() = DeezerPurple
-
-
 
 // ================================
 // SCHÉMAS DE COULEURS MATERIAL DESIGN 3
@@ -90,36 +107,36 @@ val androidx.compose.material3.ColorScheme.deezerPurple: Color
  * 
  * @since 1.0
  */
-val DeezerLightColorScheme = androidx.compose.material3.lightColorScheme(
+val DeezerLightColorScheme = lightColorScheme(
     primary = DeezerPurple,
-    onPrimary = androidx.compose.ui.graphics.Color.White,
+    onPrimary = Color.White,
     primaryContainer = DeezerPurpleLight,
-    onPrimaryContainer = androidx.compose.ui.graphics.Color(0xFF21005D),
+    onPrimaryContainer = Color(0xFF21005D),
     
     secondary = DeezerSecondary,
-    onSecondary = androidx.compose.ui.graphics.Color.White,
+    onSecondary = Color.White,
     secondaryContainer = DeezerSecondaryLight,
-    onSecondaryContainer = androidx.compose.ui.graphics.Color(0xFF1A0061),
+    onSecondaryContainer = Color(0xFF1A0061),
     
     tertiary = DeezerTertiary,
-    onTertiary = androidx.compose.ui.graphics.Color.White,
+    onTertiary = Color.White,
     tertiaryContainer = DeezerTertiaryLight,
-    onTertiaryContainer = androidx.compose.ui.graphics.Color(0xFF4A148C),
+    onTertiaryContainer = Color(0xFF4A148C),
     
     background = DeezerBackgroundLight,
-    onBackground = androidx.compose.ui.graphics.Color(0xFF201B16),
+    onBackground = Color(0xFF201B16),
     surface = DeezerSurfaceLight,
-    onSurface = androidx.compose.ui.graphics.Color(0xFF201B16),
-    surfaceVariant = androidx.compose.ui.graphics.Color(0xFFF0E0CF),
-    onSurfaceVariant = androidx.compose.ui.graphics.Color(0xFF50453A),
+    onSurface = Color(0xFF201B16),
+    surfaceVariant = Color(0xFFF0E0CF),
+    onSurfaceVariant = Color(0xFF50453A),
     
     error = DeezerError,
-    onError = androidx.compose.ui.graphics.Color.White,
+    onError = Color.White,
     errorContainer = DeezerErrorLight,
-    onErrorContainer = androidx.compose.ui.graphics.Color(0xFF410002),
+    onErrorContainer = Color(0xFF410002),
     
-    outline = androidx.compose.ui.graphics.Color(0xFF837469),
-    outlineVariant = androidx.compose.ui.graphics.Color(0xFFD3C4B4)
+    outline = Color(0xFF837469),
+    outlineVariant = Color(0xFFD3C4B4)
 )
 
 /**
@@ -138,34 +155,34 @@ val DeezerLightColorScheme = androidx.compose.material3.lightColorScheme(
  * 
  * @since 1.0
  */
-val DeezerDarkColorScheme = androidx.compose.material3.darkColorScheme(
+val DeezerDarkColorScheme = darkColorScheme(
     primary = DeezerPurpleLight,
-    onPrimary = androidx.compose.ui.graphics.Color(0xFF21005D),
+    onPrimary = Color(0xFF21005D),
     primaryContainer = DeezerPurpleDark,
     onPrimaryContainer = DeezerPurpleLight,
     
-    secondary = androidx.compose.ui.graphics.Color(0xFFB388FF),
-    onSecondary = androidx.compose.ui.graphics.Color(0xFF1A0061),
+    secondary = Color(0xFFB388FF),
+    onSecondary = Color(0xFF1A0061),
     secondaryContainer = DeezerSecondaryDark,
     onSecondaryContainer = DeezerSecondaryLight,
     
-    tertiary = androidx.compose.ui.graphics.Color(0xFFE1BEE7),
-    onTertiary = androidx.compose.ui.graphics.Color(0xFF4A148C),
+    tertiary = Color(0xFFE1BEE7),
+    onTertiary = Color(0xFF4A148C),
     tertiaryContainer = DeezerTertiaryDark,
     onTertiaryContainer = DeezerTertiaryLight,
     
     background = DeezerBackgroundDark,
-    onBackground = androidx.compose.ui.graphics.Color(0xFFEAE1DB),
+    onBackground = Color(0xFFEAE1DB),
     surface = DeezerSurfaceDark,
-    onSurface = androidx.compose.ui.graphics.Color(0xFFEAE1DB),
-    surfaceVariant = androidx.compose.ui.graphics.Color(0xFF50453A),
-    onSurfaceVariant = androidx.compose.ui.graphics.Color(0xFFD3C4B4),
+    onSurface = Color(0xFFEAE1DB),
+    surfaceVariant = Color(0xFF50453A),
+    onSurfaceVariant = Color(0xFFD3C4B4),
     
-    error = androidx.compose.ui.graphics.Color(0xFFFFB4AB),
-    onError = androidx.compose.ui.graphics.Color(0xFF690005),
+    error = Color(0xFFFFB4AB),
+    onError = Color(0xFF690005),
     errorContainer = DeezerErrorDark,
     onErrorContainer = DeezerErrorLight,
     
-    outline = androidx.compose.ui.graphics.Color(0xFF9D8E82),
-    outlineVariant = androidx.compose.ui.graphics.Color(0xFF50453A)
+    outline = Color(0xFF9D8E82),
+    outlineVariant = Color(0xFF50453A)
 )

@@ -59,8 +59,7 @@ val repositoryModule = module {
     // Repository de musique
     single<MusicRepository> {
         MusicRepositoryImpl(
-            apiService = get(),
-            audioManager = get()
+            apiService = get()
         )
     }
 }
@@ -95,8 +94,7 @@ val hardwareModule = module {
     // Lecteur audio pour les extraits Deezer
     single {
         AudioPlayer(
-            context = androidContext(),
-            audioManager = get()
+            context = androidContext()
         )
     }
 }
@@ -117,7 +115,6 @@ val viewModelModule = module {
             searchArtistsUseCase = get(),
             searchAlbumsUseCase = get(),
             searchTracksUseCase = get(),
-            navigationManager = get(),
             audioManager = get()
         )
     }

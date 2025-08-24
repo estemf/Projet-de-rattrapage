@@ -2,7 +2,6 @@ package org.diiage.projet_rattrapage.data.hardware
 
 import android.content.Context
 import android.media.MediaPlayer
-import android.os.Build
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -12,7 +11,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import timber.log.Timber
-import java.io.IOException
 
 /**
  * Manager centralisé pour la lecture des extraits audio Deezer
@@ -36,14 +34,12 @@ import java.io.IOException
  * - Interface Segregation : méthodes spécialisées par fonctionnalité
  * 
  * @property context Contexte Android pour accéder aux services système
- * @property audioManager Manager audio pour la gestion du volume et des permissions
  * 
 
  * @since 1.0
  */
 class AudioPlayer(
-    private val context: Context,
-    private val audioManager: AudioManager
+    private val context: Context
 ) {
     
     // ================================
@@ -53,7 +49,7 @@ class AudioPlayer(
     /**
      * État actuel de la lecture audio
      */
-    private val _playbackState = MutableStateFlow<PlaybackState>(PlaybackState.IDLE)
+    private val _playbackState = MutableStateFlow(PlaybackState.IDLE)
     val playbackState: StateFlow<PlaybackState> = _playbackState.asStateFlow()
     
     /**
@@ -85,7 +81,7 @@ class AudioPlayer(
     /**
      * Timer pour la mise à jour de la progression
      */
-    private var progressUpdateJob: kotlinx.coroutines.Job? = null
+    private var progressUpdateJob: Job? = null
     
     // ================================
     // GESTION DU CYCLE DE VIE
@@ -242,15 +238,7 @@ class AudioPlayer(
         return mediaPlayer?.isPlaying == true
     }
     
-    /**
-     * Vérifie si l'extrait spécifié est en cours de lecture
-     * 
-     * @param previewUrl URL de l'extrait à vérifier
-     * @return true si cet extrait est en cours de lecture
-     */
-    fun isPlayingPreview(previewUrl: String): Boolean {
-        return currentUrl == previewUrl && isPlaying()
-    }
+
     
     /**
      * Récupère la durée totale de l'extrait en cours
@@ -286,21 +274,21 @@ class AudioPlayer(
                 Timber.d("🎵 MediaPlayer prêt, lecture démarrée")
             }
             
-            setOnCompletionListener { player ->
+            setOnCompletionListener { _ ->
                 _playbackState.value = PlaybackState.COMPLETED
                 _playbackProgress.value = 1f
                 stopProgressTracking()
                 Timber.d("🎵 Lecture terminée")
             }
             
-            setOnErrorListener { player, what, extra ->
+            setOnErrorListener { _, what, extra ->
                 _playbackState.value = PlaybackState.ERROR
                 Timber.e("❌ Erreur MediaPlayer: what=$what, extra=$extra")
                 true
             }
             
-            setOnSeekCompleteListener { player ->
-                Timber.d("🎵 Seek terminé vers la position: ${player.currentPosition}")
+            setOnSeekCompleteListener { _ ->
+                Timber.d("🎵 Seek terminé")
             }
         }
     }
@@ -344,13 +332,7 @@ class AudioPlayer(
                (url.contains(".mp3") || url.contains("preview"))
     }
     
-    /**
-     * Libère les ressources du lecteur audio
-     */
-    fun release() {
-        stopPlayback()
-        Timber.d("🎵 Lecteur audio libéré")
-    }
+
 }
 
 /**

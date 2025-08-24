@@ -2,8 +2,7 @@ package org.diiage.projet_rattrapage.ui.navigation
 
 import androidx.navigation.NavController
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
+
 import timber.log.Timber
 
 
@@ -45,28 +44,18 @@ class NavigationManager() {
     
     /**
      * État actuel de la navigation (destination courante)
-     * 
-     * StateFlow réactif permettant aux composants UI de s'abonner
-     * aux changements de destination pour adapter leur comportement
      */
     private val _currentDestination = MutableStateFlow<DeezerDestinations?>(null)
-    val currentDestination: StateFlow<DeezerDestinations?> = _currentDestination.asStateFlow()
     
     /**
      * Historique des destinations visitées
-     * 
-     * Utile pour l'analytics et le debugging de la navigation
      */
     private val _navigationHistory = MutableStateFlow<List<String>>(emptyList())
-    val navigationHistory: StateFlow<List<String>> = _navigationHistory.asStateFlow()
     
     /**
      * Indicateur de capacité de navigation retour
-     * 
-     * Permet aux composants UI d'adapter l'affichage du bouton back
      */
     private val _canNavigateBack = MutableStateFlow(false)
-    val canNavigateBack: StateFlow<Boolean> = _canNavigateBack.asStateFlow()
     
     // ================================
     // INITIALISATION ET CONFIGURATION
@@ -169,22 +158,7 @@ class NavigationManager() {
         }
     }
     
-    /**
-     * Navigation vers les résultats de recherche avec requête
-     * 
-     * @param query Terme de recherche à transmettre
-     */
-    fun navigateToSearchResults(query: String) {
-        if (query.isBlank()) {
-            Timber.w("⚠️ Tentative de navigation vers résultats avec requête vide")
-            return
-        }
-        
-        val route = DeezerDestinations.SearchResultsScreen.createRoute(query)
-        navigateAndLog(route) {
-            navController?.navigate(route)
-        }
-    }
+
     
     /**
      * Navigation vers les détails d'un artiste
@@ -239,14 +213,7 @@ class NavigationManager() {
     
 
     
-    /**
-     * Navigation vers les paramètres
-     */
-    fun navigateToSettings() {
-        navigateAndLog(DeezerDestinations.SettingsScreen.route) {
-            navController?.navigate(DeezerDestinations.SettingsScreen.route)
-        }
-    }
+
     
     // ================================
     // MÉTHODES DE NAVIGATION SYSTÈME
@@ -270,17 +237,7 @@ class NavigationManager() {
         }
     }
     
-    /**
-     * Navigation retour jusqu'à une destination spécifique
-     * 
-     * @param destination Destination cible
-     * @param inclusive Si true, inclut la destination dans le pop
-     */
-    fun popBackTo(destination: DeezerDestinations, inclusive: Boolean = false) {
-        navigateAndLog("POP_TO_${destination.route}") {
-            navController?.popBackStack(destination.route, inclusive)
-        }
-    }
+
     
     // ================================
     // UTILITAIRES ET HELPERS
@@ -311,28 +268,7 @@ class NavigationManager() {
         }
     }
     
-    /**
-     * Vérifie si le NavigationManager est correctement initialisé
-     * 
-     * @return true si prêt à naviguer
-     */
-    fun isReady(): Boolean {
-        return navController != null
-    }
-    
-    /**
-     * Retourne la route courante
-     * 
-     * @return Route de la destination courante ou null
-     */
-    fun getCurrentRoute(): String? {
-        return try {
-            navController?.currentDestination?.route
-        } catch (exception: Exception) {
-            Timber.w(exception, "⚠️ Impossible d'obtenir la route courante")
-            null
-        }
-    }
+
     
     /**
      * Nettoie l'historique de navigation

@@ -7,18 +7,22 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
 /**
- * Système typographique pour l'application Deezer Music
+ * Système typographique Material Design 3 pour l'application Deezer Music
  * 
  * Cette typographie définit une hiérarchie cohérente pour l'interface utilisateur
  * en respectant les principes Material Design 3 et l'identité Deezer.
  * 
  * Design patterns appliqués :
  * - Typography System Pattern : hiérarchie cohérente des textes
- * - Material Design 3 Pattern : respect des standards typographiques
+ * - Material Design 3 Pattern : respect des standards typographiques  
  * - Brand Integration Pattern : typographie adaptée à l'identité Deezer
  * - Accessibility Pattern : tailles et espacements optimisés pour la lisibilité
+ * - Responsive Typography Pattern : adaptation automatique aux différentes tailles d'écran
  * 
  * @since 1.0
+ * @see DeezerTypography
+ * @see androidx.compose.material3.Typography
+ * @see TextStyle
  */
 
 /**

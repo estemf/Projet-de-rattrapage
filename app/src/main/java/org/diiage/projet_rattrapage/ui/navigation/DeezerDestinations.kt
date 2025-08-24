@@ -28,9 +28,7 @@ sealed class DeezerDestinations(val route: String) {
      * - Suggestions d'artistes populaires
      * - Historique de recherche
      */
-    object SearchScreen : DeezerDestinations("search") {
-        const val TITLE = "Recherche d'artistes"
-    }
+    object SearchScreen : DeezerDestinations("search")
     
     /**
      * Écran d'affichage des résultats de recherche
@@ -44,18 +42,10 @@ sealed class DeezerDestinations(val route: String) {
      * - Navigation vers les détails d'artiste
      */
     object SearchResultsScreen : DeezerDestinations("search_results/{query}") {
-        const val TITLE = "Résultats de recherche"
         const val ARG_QUERY = "query"
         
-        /**
-         * Construit la route avec paramètre pour la navigation
-         * 
-         * @param query Terme de recherche à passer
-         * @return Route complète avec paramètre
-         */
-        fun createRoute(query: String): String {
-            return "search_results/${query}"
-        }
+
+
     }
     
     /**
@@ -71,7 +61,6 @@ sealed class DeezerDestinations(val route: String) {
      * - Actions (partage, favoris)
      */
     object ArtistDetailsScreen : DeezerDestinations("artist_details/{artistId}") {
-        const val TITLE = "Détails de l'artiste"
         const val ARG_ARTIST_ID = "artistId"
         
         /**
@@ -97,7 +86,6 @@ sealed class DeezerDestinations(val route: String) {
      * - Aperçus audio
      */
     object AlbumDetailsScreen : DeezerDestinations("album_details/{albumId}") {
-        const val TITLE = "Détails de l'album"
         const val ARG_ALBUM_ID = "albumId"
         
         /**
@@ -124,7 +112,6 @@ sealed class DeezerDestinations(val route: String) {
      * - Actions (favoris, partage)
      */
     object TrackDetailsScreen : DeezerDestinations("track_details/{trackId}") {
-        const val TITLE = "Détails de la piste"
         const val ARG_TRACK_ID = "trackId"
         
         /**
@@ -152,9 +139,7 @@ sealed class DeezerDestinations(val route: String) {
      * - Préférences utilisateur
      * - Informations sur l'application
      */
-    object SettingsScreen : DeezerDestinations("settings") {
-        const val TITLE = "Paramètres"
-    }
+    object SettingsScreen : DeezerDestinations("settings")
     
     // ================================
     // MÉTHODES UTILITAIRES
@@ -191,31 +176,8 @@ sealed class DeezerDestinations(val route: String) {
             return allDestinations.find { destination ->
                 // Correspondance exacte ou pattern match pour les routes avec paramètres
                 route == destination.route || 
-                route.matches(Regex(destination.route.replace("{[^}]+}".toRegex(), "[^/]+")))
+                route.matches(destination.route.replace("\\{[^}]+\\}".toRegex(), "[^/]+").toRegex())
             }
-        }
-        
-        /**
-         * Vérifie si une route nécessite des paramètres
-         * 
-         * @param route Route à vérifier
-         * @return true si la route contient des paramètres
-         */
-        fun requiresParameters(route: String): Boolean {
-            return route.contains("{") && route.contains("}")
-        }
-        
-        /**
-         * Extrait les noms de paramètres d'une route
-         * 
-         * @param route Route à analyser
-         * @return Liste des noms de paramètres
-         */
-        fun extractParameterNames(route: String): List<String> {
-            val regex = "\\{([^}]+)\\}".toRegex()
-            return regex.findAll(route)
-                .map { it.groupValues[1] }
-                .toList()
         }
     }
 } 

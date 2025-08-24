@@ -89,32 +89,5 @@ data class Track(
         return album?.getCoverUrl(imageSize) ?: ""
     }
     
-    /**
-     * Formate les informations complètes de la piste
-     * Utile pour l'affichage et le logging
-     * 
-     * @return Chaîne formatée avec artiste - titre (durée)
-     */
-    fun getDisplayInfo(): String {
-        val artistName = getArtistName()
-        val formattedDuration = getFormattedDuration()
-        val explicitTag = if (explicit) " [E]" else ""
-        
-        return "$artistName - $title ($formattedDuration)$explicitTag"
-    }
-    
-    /**
-     * Indique si cette piste fait partie d'un album
-     * 
-     * @return true si un album est associé à cette piste
-     */
-    fun isPartOfAlbum(): Boolean = album != null
-    
-    /**
-     * Indique si cette piste a une couverture disponible via son album
-     * Délègue la logique à l'album associé
-     * 
-     * @return true si l'album a une couverture disponible
-     */
-    fun hasCover(): Boolean = album?.hasCover() ?: false
+
 } 

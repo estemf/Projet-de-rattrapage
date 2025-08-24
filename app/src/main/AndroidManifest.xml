@@ -9,9 +9,6 @@
     <!-- Permission Internet pour l'API Deezer -->
     <uses-permission android:name="android.permission.INTERNET" />
     
-    <!-- Permission pour surveiller l'état réseau -->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    
     <!-- Permission pour les paramètres audio -->
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     
